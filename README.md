@@ -1,13 +1,14 @@
 # EveOnlineMiningYield
 This is a followup to a [reddit post](https://www.reddit.com/r/Eve/comments/5bp0sm/mining_yield_with_the_november_update/) which shows the comparison of the different combinations of mining ships and boost.
 
+## Mining Ship Yields
 Meanwhile the game displays the outcome of mining yield in the hover information of the mining laser. For example when a hulk with is boosted to the maximum possible value it displays a 37.8m3/s value on its mining laser see this example screenshot: 
 
 ![in-game-mining-yield](HulkMaxBoost.jpg)
 
 This table shows the different outcome of mining yield with the different ships and boost types with all skills set to 5.
 
-|Ship|no Boost|Porpise Boot|Orca Boost|Rorqual Boost|Rorqual ICT1 Boost|Rorqual ICT2 Boost|
+|Ship|No Boost|Porpise Boot|Orca Boost|Rorqual Boost|Rorqual ICT1 Boost|Rorqual ICT2 Boost|
 |:-|:-|:-|:-|:-|:-|:-|
 |     Venture|    4.26|    6.94|    7.15|    7.60|    9.45|    9.93|
 |    Procurer|    9.48|   15.46|   15.92|   16.92|   21.04|   22.12|
@@ -23,7 +24,6 @@ The formular behind this table is calculated as followed:
 	# skills 
 	my $Mining_Skill                   = 5;
 	my $Astrogeology_Skill             = 5;
-	my $Industrial_Command_Ship_Skill  = 5;
 	my $Mining_Director_Skill          = 5;
 	my $Capital_Industrial_Ships_Skill = 5;
 	my $Mining_Barge_Skill             = 5;
@@ -33,11 +33,9 @@ The formular behind this table is calculated as followed:
 	my $Mining_Foreman_Mindlink_bonus_1  = (1+0.25);
 	my $Mining_Laser_optimization_base_1 = 0.15;
 	my $Tech_2_Command_Burst_Modules_1   = (1+0.25);
-	my $T1_Industrial_Core               = (1+0.25);
 	my $T2_Industrial_Core               = (1+0.30);
 	my $Highwall_Mining_MX1005_Implant   = (1+0.05);
 	my $mining_upgrades_x3               = (1+0.295);
-	my $mining_upgrades_x2               = (1+0.189);
 
 	# Minig Crystal II Attribute
 	my $Asteroid_Specialization_Yield_Modifier =  1.75;
@@ -70,5 +68,52 @@ The formular behind this table is calculated as followed:
 
 	my $mining_yield_per_second = $hulk_base_yield / $hulk_base_time;
 
-	printf("%3.2f", $mining_yield_per_second);
+	printf("%3.2f", $mining_yield_per_second); # prints 37.79
 ```
+## Mining Drone Yields
+The Mining amount of ore collected via drones is listed in the attributes section of the info window for each drone.
+
+In this example it is 2651.28 m3
+
+![in-game-drone-yield](ExcavatorDroneMaxBoost.jpg)
+
+This value is calculated as followed:
+```perl
+	# skills 
+	my $Drone_Interfacing_Skill           = 5;
+	my $Mining_Drone_Operation_Skill      = 5;
+	my $Mining_Drone_Specialization_Skill = 4; # example value not maxed.
+	my $Industrial_Command_Ships_Skill    = 5;
+
+	# Excavator Mining Drone base yield
+	my $drone_base = 100;
+	my $drone_yield_per_second = $drone_base
+		* (1 + 0.1 * $Industrial_Command_Ships_Skill)
+		* (1 + 0.1 * $Drone_Interfacing_Skill)
+		* (1 + 0.05 * $Mining_Drone_Operation_Skill)
+		* (1 + 0.02 * $Mining_Drone_Specialization_Skill)
+		* (1 + 0.15 ) # medium mining drone augmentor II
+		* (1 + 0.15 ) # medium mining drone augmentor II
+		* (1 + 0.10 ) # medium mining drone augmentor I
+		* (1 + 5.00 ); # 500% ic2 bonus
+
+	printf("%3.2f", $drone_yield_per_second); # prints 2651.28
+```
+
+The outcome for all kinds of mining drones is this. 
+Note that that the venture can only operate two drones while all other ships run up to five drones.
+
+|Ship|Mining Drone I|Mining Drone II|Augmented Mining Drone|Harvester Mining Drone|Excavator Mining Drone|
+|:-|:-|:-|:-|:-|:-|
+|     Venture|   75.01|   99.01|  111.02|  126.02|     N/A|
+|    Procurer|   75.01|   99.01|  111.02|  126.02|     N/A|
+|   Retriever|   75.01|   99.01|  111.02|  126.02|     N/A|
+|     Covetor|   75.01|   99.01|  111.02|  126.02|     N/A|
+|       Skiff|   68.19|   90.01|  100.92|  114.56|     N/A|
+|    Mackinaw|   68.19|   90.01|  100.92|  114.56|     N/A|
+|        Hulk|   68.19|   90.01|  100.92|  114.56|     N/A|
+|    Porpoise|  168.77|  222.78|  249.79|  283.54|     N/A|
+|        Orca|  225.03|  297.04|  333.05|  378.05|     N/A|
+|     Rorqual|  112.52|  148.52|  166.52|  189.03|  450.06|
+|Rorqual ICT1|  562.58|  742.60|  832.62|  945.13| 2250.32|
+|Rorqual ICT2|  675.09|  891.13|  999.14| 1134.16| 2700.38|
