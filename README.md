@@ -1,6 +1,10 @@
 # EveOnlineMiningYield
 This is a followup to a [reddit post](https://www.reddit.com/r/Eve/comments/5bp0sm/mining_yield_with_the_november_update/) which shows the comparison of the different combinations of mining ships and boost.
 
+This page is currently limited to ore yields (except Mercoxit) but will be extended to ice and gas.
+
+# Ore Mining Yield
+
 ## Mining Ship Yields
 Meanwhile the game displays the outcome of mining yield in the hover information of the mining laser. For example when a hulk with is boosted to the maximum possible value it displays a 37.8m3/s value on its mining laser see this example screenshot: 
 
@@ -120,6 +124,12 @@ Note that that the venture can only operate two drones while all other ships run
 
 ## Code
 The code to generate these tables is [here](EveOnlineMiningYield.pl)
+
+# Ice Mining Yield
+*To be done*
+
+# Gas Mining Yield
+*To be done*
 
 # COPYRIGHT NOTICE
 EVE Online and the EVE logo are the registered trademarks of CCP hf. All rights are reserved worldwide. All other trademarks are the property of their respective owners. EVE Online, the EVE logo, EVE and all associated logos and designs are the intellectual property of CCP hf. All artwork, screenshots, characters, vehicles, storylines, world facts or other recognizable features of the intellectual property relating to these trademarks are likewise the intellectual property of CCP hf. CCP hf. has granted permission to EveOnlineMiningYield to use EVE Online and all associated logos and designs for promotional and information purposes on its website but does not endorse, and is not in any way affiliated with, EveOnlineMiningYield. CCP is in no way responsible for the content on or functioning of this website, nor can it be liable for any damage arising from the use of this website.
