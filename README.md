@@ -12,7 +12,8 @@ Meanwhile the game displays the outcome of mining yield in the hover information
 
 This table shows the different outcome of mining yield with the different ships and boost types with all skills set to 5.
 
-All numbers in m3/s
+
+All numbers in m3/s per mining laser
 
 |Ship|No Boost|Porpise Boot|Orca Boost|Rorqual Boost|Rorqual ICT1 Boost|Rorqual ICT2 Boost|
 |:-|:-|:-|:-|:-|:-|:-|
@@ -23,6 +24,18 @@ All numbers in m3/s
 |       Skiff|   11.48|   18.71|   19.26|   20.47|   25.46|   26.77|
 |    Mackinaw|   11.48|   18.71|   19.26|   20.47|   25.46|   26.77|
 |        Hulk|   16.20|   26.42|   27.20|   28.90|   35.95|   37.79|
+
+All numbers in m3/s per ship
+
+|Ship|no Boost|Porpise Boot|Orca Boost|Rorqual Boost|Rorqual ICT1 Boost|Rorqual ICT2 Boost|
+|:-|:-|:-|:-|:-|:-|:-|
+|     Venture|    8.52|   13.89|   14.30|   15.19|   18.89|   19.86|
+|    Procurer|   18.97|   30.92|   31.84|   33.83|   42.08|   44.24|
+|   Retriever|   20.66|   33.68|   34.67|   36.85|   45.83|   48.18|
+|     Covetor|   27.54|   44.91|   46.23|   49.13|   61.11|   64.24|
+|       Skiff|   22.95|   37.42|   38.53|   40.94|   50.92|   53.53|
+|    Mackinaw|   22.95|   37.42|   38.53|   40.94|   50.92|   53.53|
+|        Hulk|   32.40|   52.83|   54.39|   57.80|   71.89|   75.58|
 
 The formular behind this table is calculated as followed:
 
