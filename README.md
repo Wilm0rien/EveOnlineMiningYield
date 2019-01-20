@@ -117,3 +117,6 @@ Note that that the venture can only operate two drones while all other ships run
 |     Rorqual|  112.52|  148.52|  166.52|  189.03|  450.06|
 |Rorqual ICT1|  562.58|  742.60|  832.62|  945.13| 2250.32|
 |Rorqual ICT2|  675.09|  891.13|  999.14| 1134.16| 2700.38|
+
+## Code
+The code to generate these tables is [here](EveOnlineMiningYield.pl)
