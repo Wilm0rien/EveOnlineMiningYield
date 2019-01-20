@@ -122,7 +122,7 @@ This value is calculated as followed:
 The outcome for all kinds of mining drones is this. 
 Note that that the venture can only operate two drones while all other ships run up to five drones.
 
-all numbers in m3 per 60s cycle
+all numbers in m3 per 60s cycle per drone
 
 |Ship|Mining Drone I|Mining Drone II|Augmented Mining Drone|Harvester Mining Drone|Excavator Mining Drone|
 |:-|:-|:-|:-|:-|:-|
@@ -142,7 +142,7 @@ all numbers in m3 per 60s cycle
 
 [eXistence_42](https://www.reddit.com/user/eXistence_42) [requested](https://www.reddit.com/r/Eve/comments/ai2oy4/eveonlineminingyield_calculation_only_for_ore/eekm9bu) the mining yield for the drones to be comparable to the ship yield numbers. For this purpose the yield value is multiplied by the number of drones (2 for the venture and 5 for other ships) and divided by the 60s cycle duration. Note that it leaves out the travel time between the drones and the ship, so the real numbers will be lower than listed here.
 
-All numbers in m3/s
+All numbers in m3/s per ship with max drones
 
 |Ship|Mining Drone I|Mining Drone II|Augmented Mining Drone|Harvester Mining Drone|Excavator Mining Drone|
 |:-|:-|:-|:-|:-|:-|
