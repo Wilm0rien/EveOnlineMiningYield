@@ -12,6 +12,8 @@ Meanwhile the game displays the outcome of mining yield in the hover information
 
 This table shows the different outcome of mining yield with the different ships and boost types with all skills set to 5.
 
+All numbers in m3/s
+
 |Ship|No Boost|Porpise Boot|Orca Boost|Rorqual Boost|Rorqual ICT1 Boost|Rorqual ICT2 Boost|
 |:-|:-|:-|:-|:-|:-|:-|
 |     Venture|    4.26|    6.94|    7.15|    7.60|    9.45|    9.93|
@@ -107,6 +109,8 @@ This value is calculated as followed:
 The outcome for all kinds of mining drones is this. 
 Note that that the venture can only operate two drones while all other ships run up to five drones.
 
+all numbers in m3 per 60s cycle
+
 |Ship|Mining Drone I|Mining Drone II|Augmented Mining Drone|Harvester Mining Drone|Excavator Mining Drone|
 |:-|:-|:-|:-|:-|:-|
 |     Venture|   75.01|   99.01|  111.02|  126.02|     N/A|
@@ -121,6 +125,26 @@ Note that that the venture can only operate two drones while all other ships run
 |     Rorqual|  112.52|  148.52|  166.52|  189.03|  450.06|
 |Rorqual ICT1|  562.58|  742.60|  832.62|  945.13| 2250.32|
 |Rorqual ICT2|  675.09|  891.13|  999.14| 1134.16| 2700.38|
+
+
+[eXistence_42](https://www.reddit.com/user/eXistence_42) [requested](https://www.reddit.com/r/Eve/comments/ai2oy4/eveonlineminingyield_calculation_only_for_ore/eekm9bu) the mining yield for the drones to be comparable to the ship yield numbers. For this purpose the yield value is multiplied by the number of drones (2 for the venture and 5 for other ships) and divided by the 60s cycle duration. Note that it leaves out the travel time between the drones and the ship, so the real numbers will be lower than listed here.
+
+All numbers in m3/s
+
+|Ship|Mining Drone I|Mining Drone II|Augmented Mining Drone|Harvester Mining Drone|Excavator Mining Drone|
+|:-|:-|:-|:-|:-|:-|
+|     Venture|    2.50|    3.30|    3.70|    4.20|     N/A|
+|    Procurer|    6.25|    8.25|    9.25|   10.50|     N/A|
+|   Retriever|    6.25|    8.25|    9.25|   10.50|     N/A|
+|     Covetor|    6.25|    8.25|    9.25|   10.50|     N/A|
+|       Skiff|    5.68|    7.50|    8.41|    9.55|     N/A|
+|    Mackinaw|    5.68|    7.50|    8.41|    9.55|     N/A|
+|        Hulk|    5.68|    7.50|    8.41|    9.55|     N/A|
+|    Porpoise|   14.06|   18.57|   20.82|   23.63|     N/A|
+|        Orca|   18.75|   24.75|   27.75|   31.50|     N/A|
+|     Rorqual|    9.38|   12.38|   13.88|   15.75|   37.51|
+|Rorqual ICT1|   46.88|   61.88|   69.38|   78.76|  187.53|
+|Rorqual ICT2|   56.26|   74.26|   83.26|   94.51|  225.03|
 
 ## Code
 The code to generate these tables is [here](EveOnlineMiningYield.pl)
