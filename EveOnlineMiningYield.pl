@@ -1,17 +1,24 @@
 use strict;
 
-my @ship_list = ("Venture", "Procurer", "Retriever", "Covetor", "Skiff", "Mackinaw", "Hulk", "Porpoise", "Orca", "Rorqual", "Rorqual ICT1", "Rorqual ICT2");
+my @ship_list = ("Venture","Endurance","Prospect", "Procurer", "Retriever", "Covetor", "Skiff", "Mackinaw", "Hulk", "Porpoise", "Orca", "Rorqual", "Rorqual ICT1", "Rorqual ICT2");
 
-my @drone_list = ("Mining Drone I", "Mining Drone II", "Augmented Mining Drone", "Harvester Mining Drone", "Excavator Mining Drone");
+my @ore_drone_list = ("Mining Drone I", "Mining Drone II", "Augmented Mining Drone", "Harvester Mining Drone", "Excavator Mining Drone");
+my @ice_drone_list = ("Ice Harvesting Drone I", "Ice Harvesting Drone II", "Augmented Ice Harvesting Drone", "Excavator Ice Harvesting Drone");
 
 my @boost_list = ("no Boost", "Porpise Boot", "Orca Boost", "Rorqual Boost", "Rorqual ICT1 Boost", "Rorqual ICT2 Boost");
 
-print_drone_table();
+print_drone_table("ORE");
+#print_drone_table("ICE");
 print "\n";
-print_ship_table();
+#print_ship_table("ICE");
+
+print_ship_table("ORE");
+
+
 
 sub print_ship_table
 {
+	my $mining_type = $_[0];
 	my $headline_string = "|Ship";
 	my $column_separator = "|:-";
 	foreach my $boost_type (@boost_list)
@@ -28,8 +35,14 @@ sub print_ship_table
 		$out_string.= sprintf("|%12.12s", $ship);
 		foreach my $boost_type (@boost_list)
 		{
-			$out_string.= sprintf("|%s",  get_mining_amount($boost_type, $ship));
-			#$out_string.= sprintf("|%s",  "N/A");
+			if ($mining_type eq "ORE")
+			{
+				$out_string.= sprintf("|%s",  get_ore_mining_amount($boost_type, $ship));
+			}
+			elsif ($mining_type eq "ICE")
+			{
+				$out_string.= sprintf("|%s",  get_ice_mining_amount($boost_type, $ship));
+			}
 		}
 		$out_string.="|\n";
 		printf($out_string);
@@ -38,9 +51,20 @@ sub print_ship_table
 
 sub print_drone_table
 {
-	#printf("|corv      |% 8.2f|\n", $drone_amount_cov);
+	my $mining_type = $_[0];
 	my $headline_string = "|Ship";
 	my $column_separator = "|:-";
+
+	my @drone_list;
+	if ($mining_type eq "ORE")
+	{
+		@drone_list = @ore_drone_list;
+	}
+	elsif ($mining_type eq "ICE")
+	{
+		@drone_list = @ice_drone_list;
+	}
+
 	foreach my $drone_type (@drone_list)
 	{
 		$headline_string.= sprintf("|%s", $drone_type);
@@ -53,49 +77,39 @@ sub print_drone_table
 	{
 		my $out_string = "";
 		$out_string.= sprintf("|%12.12s", $ship);
+
 		foreach my $drone_type (@drone_list)
 		{
-			$out_string.= sprintf("|%s",  get_drone_amount($drone_type, $ship));
+			if ($mining_type eq "ORE")
+			{
+				$out_string.= sprintf("|%s",  get_ore_drone_amount($drone_type, $ship));
+			}
+			elsif ($mining_type eq "ICE")
+			{
+				$out_string.= sprintf("|%s",  get_ice_drone_amount($drone_type, $ship));
+			}
 		}
 		$out_string.="|\n";
 		printf($out_string);
 	}
 }
 
-sub get_mining_amount
+sub get_boost_factor
 {
 	my $boost_type              = $_[0];
-	my $ship_type               = $_[1];
+	my $boost_factor = 0;
 
-	my $mining_yield_per_second = 0;
-
-	# skills 
-	my $Mining_Skill                   = 5;
-	my $Astrogeology_Skill             = 5;
+	# boost skills
 	my $Industrial_Command_Ship_Skill  = 5;
 	my $Mining_Director_Skill          = 5;
 	my $Capital_Industrial_Ships_Skill = 5;
-	my $Mining_Barge_Skill             = 5;
-	my $Exhumer_Skill                  = 5;
 
-	# factors 
+	# boost factors
 	my $Mining_Foreman_Mindlink_bonus_1  = (1+0.25);
-	my $Mining_Laser_optimization_base_1 = 0.15;
 	my $Tech_2_Command_Burst_Modules_1   = (1+0.25);
 	my $T1_Industrial_Core               = (1+0.25);
 	my $T2_Industrial_Core               = (1+0.30);
-	my $Highwall_Mining_MX1005_Implant   = (1+0.05);
-	my $mining_upgrades_x3               = (1+0.295);
-	my $mining_upgrades_x2               = (1+0.189);
-
-	# Modulated Strip Miner II Attribute
-	my $Strip_Miner_II_Mining_Amount = 450;
-	my $Strip_Miner_II_Cycle_Time    = 180;
-
-	# Minig Crystal II Attribute
-	my $Asteroid_Specialization_Yield_Modifier =  1.75;
-
-	my $boost_factor = 0;
+	my $Mining_Laser_optimization_base_1 = 0.15;
 
 	# caluclate boost factors
 	if ($boost_type eq "no Boost")
@@ -151,26 +165,112 @@ sub get_mining_amount
 		$boost_factor = (1- $rorqual_boost_t2);
 	}
 
+	return $boost_factor;
+}
+
+sub get_ore_mining_amount
+{
+	my $boost_type              = $_[0];
+	my $ship_type               = $_[1];
+
+	my $mining_yield_per_second = 0;
+
+	# skills 
+	my $Mining_Skill                   = 5;
+	my $Astrogeology_Skill             = 5;
+	my $Mining_Barge_Skill             = 5;
+	my $Exhumer_Skill                  = 5;
+	my $Mining_Frigate_Skill          = 5; 
+	my $Expedition_Frigates_Skill     = 2;
+
+	# factors 
+	my $Highwall_Mining_MX1005_Implant   = (1+0.05);
+	my $mining_upgrades_x3               = (1+0.295);
+	my $mining_upgrades_x2               = (1+0.189);
+	my $mining_upgrades_x4               = (1+0.4116);
+
+	# Modulated Strip Miner II Attribute
+	my $Strip_Miner_II_Mining_Amount = 450;
+	my $Strip_Miner_II_Cycle_Time    = 180;
+
+	# Minig Crystal II Attribute
+	my $Asteroid_Specialization_Yield_Modifier =  1.75;
+
+	# Miner II Attributes
+	my $MinerII_cycle      = 60;
+	my $MinerII_amount     = 60;
+
+
+	my $mining_upgrades_x1 = 0.09;
+
+	my $boost_factor = get_boost_factor($boost_type);
+
+	my $turret_factor = 2; # number of turrents on the ship
 
 	if  ($ship_type eq "Venture")
 	{
-		my $MinerII_amount     = 60;
 		my $Venture_Role_Bonus = 1.00;
-		my $MinerII_cycle      = 60;
-		my $mining_upgrades_x1 = 0.09;
 
-		my $venture_base_yield =  $MinerII_amount 
-		  * (1+0.05*$Mining_Skill)       # role bonus
+		my $venture_base_yield =  
+			$MinerII_amount 
+		  * (1+0.05*$Mining_Frigate_Skill)       # regular skill bonus
 		  * (1+0.05*$Mining_Skill)       # regular skill bonus
 		  * (1+0.05*$Astrogeology_Skill) # regular skill bonus
 		  * (1+$Venture_Role_Bonus)      # role bonus
-		  * (1+$mining_upgrades_x1);
+		  * $Highwall_Mining_MX1005_Implant
+		  * $mining_upgrades_x3
+				;
 
 		my $venture_base_time = ($MinerII_cycle * $boost_factor);
 
 		if ($venture_base_time > 0 )
 		{
-			$mining_yield_per_second = $venture_base_yield / $venture_base_time;
+			$mining_yield_per_second = $venture_base_yield / $venture_base_time ;
+		}
+	}
+	elsif  ($ship_type eq "Endurance")
+	{
+		my $Endurance_Role_Bonus = 3.00;
+
+		my $endurance_base_yield =  
+			$MinerII_amount 
+		  * (1+0.05*$Mining_Frigate_Skill)       # regular skill bonus
+		  * (1+0.05*$Mining_Skill)       # regular skill bonus
+		  * (1+0.05*$Astrogeology_Skill) # regular skill bonus
+		  * (1+$Endurance_Role_Bonus)      # role bonus
+		  * $mining_upgrades_x3
+		  * $Highwall_Mining_MX1005_Implant
+		;
+
+		my $endurance_base_time = ($MinerII_cycle * $boost_factor);
+
+		if ($endurance_base_time > 0 )
+		{
+			$mining_yield_per_second = $endurance_base_yield / $endurance_base_time ;
+		}
+
+		$turret_factor = 1; # only one turrent allowed on the endurance
+	}
+	elsif  ($ship_type eq "Prospect")
+	{
+		my $Prospect_Role_Bonus = 1.00;
+
+		my $prospect_base_yield =  
+			$MinerII_amount 
+		  * (1+0.05*$Mining_Frigate_Skill)       # regular skill bonus
+		  * (1+0.05*$Expedition_Frigates_Skill)       # regular skill bonus
+		  * (1+0.05*$Mining_Skill)       # regular skill bonus
+		  * (1+0.05*$Astrogeology_Skill) # regular skill bonus
+		  * (1+$Prospect_Role_Bonus)      # role bonus
+		  * $Highwall_Mining_MX1005_Implant
+		  * $mining_upgrades_x4
+		;
+
+		my $prospect_base_time = ($MinerII_cycle * $boost_factor);
+
+		if ($prospect_base_time > 0 )
+		{
+			$mining_yield_per_second = $prospect_base_yield / $prospect_base_time ;
 		}
 	}
 	elsif  ($ship_type eq "Procurer")
@@ -280,22 +380,172 @@ sub get_mining_amount
 	}
 	else
 	{
-		$out_string =sprintf("% 8.2f", $mining_yield_per_second);
+		$out_string =sprintf("% 8.2f", $mining_yield_per_second  );
 	}
 	return $out_string;
 }
 
-sub get_drone_amount
+
+sub get_ice_mining_amount
+{
+	my $boost_type              = $_[0];
+	my $ship_type               = $_[1];
+
+	my $Ice_Harvester_Cycle_Time = 0;
+
+	my $Mining_Skill                   = 5;
+	my $Astrogeology_Skill             = 5;
+	my $Mining_Barge_Skill             = 5;
+	my $Exhumer_Skill                  = 5;
+	my $Ice_Harvesting_Skill           = 5;
+
+	my $Mining_Frigate_Skill             = 5;
+	my $Expedition_Frigates_Skill             = 2;
+
+	# factors
+	my $Ice_Harvester_II_Base_Duration = 200;
+	my $Ice_Mining_Laser_II_Base_Duration = 330;
+	my $Ice_Harvester_Upgrade_II       = 0.09;
+	my $Yeti_Harvesting_IH_1005_Implant = 0.05;
+	
+	my $boost_factor = get_boost_factor($boost_type);
+
+	my $turret_factor = 2; # number of turrents on the ship
+
+	if  ($ship_type eq "Venture")
+	{
+		# cannot fit ice mining lasers
+	}
+	elsif ($ship_type eq "Endurance")
+	{
+		$Ice_Harvester_Cycle_Time = $Ice_Mining_Laser_II_Base_Duration
+									* (1 - 0.5) # role bonus
+									* (1 - 0.05 * $Mining_Frigate_Skill )
+									* (1 - 0.05 * $Expedition_Frigates_Skill ) 
+									* (1 - 0.05 * $Ice_Harvesting_Skill )
+									* (1 - $Ice_Harvester_Upgrade_II ) 
+									* (1 - $Ice_Harvester_Upgrade_II) 
+									* (1 - $Ice_Harvester_Upgrade_II ) 
+									* (1 - $Yeti_Harvesting_IH_1005_Implant) 
+									* $boost_factor;
+
+		$turret_factor = 1; # only one turrent allowed on the endurance
+	}
+	elsif ($ship_type eq "Prospect")
+	{
+		$Ice_Harvester_Cycle_Time = $Ice_Mining_Laser_II_Base_Duration
+									* (1 - 0.05 * $Ice_Harvesting_Skill )
+									* (1 - $Ice_Harvester_Upgrade_II ) 
+									* (1 - $Ice_Harvester_Upgrade_II) 
+									* (1 - $Ice_Harvester_Upgrade_II ) 
+									* (1 - $Ice_Harvester_Upgrade_II ) 
+									* (1 - $Yeti_Harvesting_IH_1005_Implant) 
+									* $boost_factor;
+
+		#printf("cycle time: %3.2f\n", $Ice_Mining_Laser_II_Base_Duration);
+		#printf("cycle time: %3.2f\n", $Ice_Harvester_Cycle_Time);
+	}
+	elsif  ($ship_type eq "Procurer")
+	{
+		$Ice_Harvester_Cycle_Time = $Ice_Harvester_II_Base_Duration
+									* (1 - 0.02 * $Mining_Barge_Skill )
+									* (1 - 0.05 * $Ice_Harvesting_Skill )
+									* (1 - 0.12 ) # Medium Ice Harvesting Accelerator I
+									* (1 - $Ice_Harvester_Upgrade_II ) 
+									* (1 - $Ice_Harvester_Upgrade_II) 
+									* (1 - $Yeti_Harvesting_IH_1005_Implant) 
+									* $boost_factor;
+	}
+	elsif  ($ship_type eq "Retriever")
+	{
+		$Ice_Harvester_Cycle_Time = $Ice_Harvester_II_Base_Duration
+									* (1 - 0.02 * $Mining_Barge_Skill )
+									* (1 - 0.05 * $Ice_Harvesting_Skill )
+									* (1 - 0.12 ) # Medium Ice Harvesting Accelerator I
+									* (1 - $Ice_Harvester_Upgrade_II ) 
+									* (1 - $Ice_Harvester_Upgrade_II) 
+									* (1 - $Ice_Harvester_Upgrade_II) 
+									* (1 - $Yeti_Harvesting_IH_1005_Implant) 
+									* $boost_factor;
+	}
+	elsif  ($ship_type eq "Covetor")
+	{
+		$Ice_Harvester_Cycle_Time = $Ice_Harvester_II_Base_Duration
+									* (1 - 0.25) # role bonus
+									* (1 - 0.02 * $Mining_Barge_Skill )
+									* (1 - 0.05 * $Ice_Harvesting_Skill )
+									* (1 - 0.12 ) # Medium Ice Harvesting Accelerator I
+									* (1 - $Ice_Harvester_Upgrade_II ) 
+									* (1 - $Ice_Harvester_Upgrade_II) 
+									* (1 - $Ice_Harvester_Upgrade_II) 
+									* (1 - $Yeti_Harvesting_IH_1005_Implant) 
+									* $boost_factor;
+	}
+	elsif  ($ship_type eq "Skiff")
+	{
+		$Ice_Harvester_Cycle_Time = $Ice_Harvester_II_Base_Duration
+									* (1 - 0.02 * $Mining_Barge_Skill )
+									* (1 - 0.02 * $Exhumer_Skill )
+									* (1 - 0.05 * $Ice_Harvesting_Skill )
+									* (1 - 0.12 ) # Medium Ice Harvesting Accelerator I
+									* (1 - $Ice_Harvester_Upgrade_II ) 
+									* (1 - $Ice_Harvester_Upgrade_II) 
+									* (1 - $Ice_Harvester_Upgrade_II) 
+									* (1 - $Yeti_Harvesting_IH_1005_Implant) 
+									* $boost_factor;
+	}
+	elsif  ($ship_type eq "Mackinaw")
+	{
+		$Ice_Harvester_Cycle_Time = $Ice_Harvester_II_Base_Duration
+									* (1 - 0.02 * $Mining_Barge_Skill )
+									* (1 - 0.02 * $Exhumer_Skill )
+									* (1 - 0.05 * $Ice_Harvesting_Skill )
+									* (1 - 0.12 ) # Medium Ice Harvesting Accelerator I
+									* (1 - $Ice_Harvester_Upgrade_II ) 
+									* (1 - $Ice_Harvester_Upgrade_II) 
+									* (1 - $Ice_Harvester_Upgrade_II) 
+									* (1 - $Yeti_Harvesting_IH_1005_Implant) 
+									* $boost_factor;
+	}
+	elsif  ($ship_type eq "Hulk")
+	{
+		$Ice_Harvester_Cycle_Time = $Ice_Harvester_II_Base_Duration
+									* (1 - 0.25) # role bonus
+									* (1 - 0.02 * $Mining_Barge_Skill )
+									* (1 - 0.02 * $Exhumer_Skill )
+									* (1 - 0.05 * $Ice_Harvesting_Skill )
+									* (1 - 0.12 ) # Medium Ice Harvesting Accelerator I
+									* (1 - $Ice_Harvester_Upgrade_II ) 
+									* (1 - $Ice_Harvester_Upgrade_II) 
+									* (1 - $Ice_Harvester_Upgrade_II) 
+									* (1 - $Yeti_Harvesting_IH_1005_Implant) 
+									* $boost_factor;
+	}
+
+	my $out_string = "";
+	if ( $Ice_Harvester_Cycle_Time == 0)
+	{
+		 $out_string =  sprintf("%8.8s", "N/A");
+	}
+	else
+	{
+		$out_string =sprintf("% 8.2f", 1000 / $Ice_Harvester_Cycle_Time );
+	}
+	return $out_string;
+}
+
+sub get_ore_drone_amount
 {
 	my $drone_type = $_[0];
 	my $ship_type = $_[1];
 	my $drone_yield_per_second=0;
 	my $drone_base = 0;
+	my $number_of_drones=5;
 
 	# skills 
 	my $Drone_Interfacing_Skill           = 5;
 	my $Mining_Drone_Operation_Skill      = 5;
-	my $Mining_Drone_Specialization_Skill = 5;
+	my $Mining_Drone_Specialization_Skill = 4;
 	my $Industrial_Command_Ships_Skill    = 5;
 
 	if ($drone_type eq "Mining Drone I")
@@ -332,6 +582,7 @@ sub get_drone_amount
 			* (1 + 0.15 ) # small mining drone augmentor II
 			* (1 + 0.10 ) # small mining drone augmentor I
 			;
+		$number_of_drones = 2;
 	}
 
 	elsif  ( ($ship_type eq "Covetor") ||
@@ -431,6 +682,62 @@ sub get_drone_amount
 	else
 	{
 		$out_string =sprintf("% 8.2f", $drone_yield_per_second);
+	}
+	return $out_string;
+}
+
+
+sub get_ice_drone_amount
+{
+	my $drone_type = $_[0];
+	my $ship_type = $_[1];
+	my $drone_cycle_duration=0;
+	my $drone_base = 0;
+	my $number_of_drones=5;
+	my $drone_cycle_duration_base = 0;
+	if ($drone_type eq "Ice Harvesting Drone I")
+	{
+		$drone_cycle_duration_base = 330;
+	}
+	elsif ($drone_type eq "Ice Harvesting Drone II")
+	{
+		$drone_cycle_duration_base = 300;
+	}
+	elsif ($drone_type eq "Augmented Ice Harvesting Drone")
+	{
+		$drone_cycle_duration_base = 280;
+	}
+	elsif ($drone_type eq "Excavator Ice Harvesting Drone")
+	{
+		$drone_cycle_duration_base = 250;
+	}
+
+	# skills 
+	my $Ice_Harvesting_Drone_Operation_Skill = 5;
+	my $Ice_Harvesting_Drone_Specialication_Skill = 1;
+
+
+	if  ( ($ship_type eq "Covetor") ||
+		  ($ship_type eq "Procurer")||
+		  ($ship_type eq "Retriever"))
+	{
+		$drone_cycle_duration =$drone_cycle_duration_base
+			* (1 - 0.05 * $Ice_Harvesting_Drone_Operation_Skill)
+			* (1 - 0.02 * $Ice_Harvesting_Drone_Specialication_Skill)
+			#* (1 + 0.15 ) # medium mining drone augmentor II
+			#* (1 + 0.15 ) # medium mining drone augmentor II
+			#* (1 + 0.10 ) # medium mining drone augmentor I
+			;
+	}
+
+	my $out_string = "";
+	if ( $drone_cycle_duration == 0)
+	{
+		 $out_string =  sprintf("%8.8s", "N/A");
+	}
+	else
+	{
+		$out_string =sprintf("% 8.2f", $drone_cycle_duration);
 	}
 	return $out_string;
 }
