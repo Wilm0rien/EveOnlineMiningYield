@@ -319,7 +319,7 @@ sub get_drone_amount
 				($ship_type eq "Rorqual ICT1")||
 				($ship_type eq "Rorqual ICT2")))
 	{
-		$drone_base = 100;
+		$drone_base = 80;
 	}
 
 	if  ($ship_type eq "Venture")

@@ -116,7 +116,7 @@ This value is calculated as followed:
 		* (1 + 0.10 ) # medium mining drone augmentor I
 		* (1 + 5.00 ); # 500% ic2 bonus
 
-	printf("%3.2f", $drone_yield_per_second); # prints 2651.28
+	printf("%3.2f", $drone_yield_per_second); # prints 2121.03
 ```
 
 The outcome for all kinds of mining drones is this. 
@@ -135,9 +135,9 @@ All numbers in m3 per 60s cycle per drone (ingame values listed for proving the 
 |        Hulk|   68.19|   90.01|  100.92|  114.56|     N/A|
 |    Porpoise|  168.77|  222.78|  249.79|  283.54|     N/A|
 |        Orca|  225.03|  297.04|  333.05|  378.05|     N/A|
-|     Rorqual|  112.52|  148.52|  166.52|  189.03|  450.06|
-|Rorqual ICT1|  562.58|  742.60|  832.62|  945.13| 2250.32|
-|Rorqual ICT2|  675.09|  891.13|  999.14| 1134.16| 2700.38|
+|     Rorqual|  112.52|  148.52|  166.52|  189.03|  360.05|
+|Rorqual ICT1|  562.58|  742.60|  832.62|  945.13| 1800.25|
+|Rorqual ICT2|  675.09|  891.13|  999.14| 1134.16| 2160.30|
 
 
 [eXistence_42](https://www.reddit.com/user/eXistence_42) [requested](https://www.reddit.com/r/Eve/comments/ai2oy4/eveonlineminingyield_calculation_only_for_ore/eekm9bu) the mining yield for the drones to be comparable to the ship yield numbers. For this purpose the yield value is multiplied by the number of drones (2 for the venture and 5 for other ships) and divided by the 60s cycle duration. Note that it leaves out the travel time between the drones and the ship, so the real numbers will be lower than listed here.
