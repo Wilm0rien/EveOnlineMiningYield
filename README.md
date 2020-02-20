@@ -92,7 +92,7 @@ The formular behind this table is calculated as followed:
 ## Mining Drone Yields
 The Mining amount of ore collected via drones is listed in the attributes section of the info window for each drone.
 
-In this example it is 2651.28 m3
+In this example it is 2121.03 m3
 
 ![in-game-drone-yield](ExcavatorDroneMaxBoost.jpg)
 
