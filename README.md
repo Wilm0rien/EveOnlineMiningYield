@@ -92,7 +92,7 @@ The formular behind this table is calculated as followed:
 
 	printf("%3.2f", $mining_yield_per_second); # prints 40.27
 ```
-## Ore Mining Drone Yields
+## Drone Yields
 
 The Mining amount of ore collected via drones is listed in the attributes section of the info window for each drone.
 
@@ -252,7 +252,7 @@ my $Ice_Harvester_Cycle_Time = $Ice_Harvester_II_Base_Duration
 printf("%3.2f", 1000 / $Ice_Harvester_Cycle_Time ) # prints "45.84"
 ```
 
-## Ice Mining Drone Yields
+## Drone Yields
 
 The minimum cycle time of an Ice Harvesting Drone is *13.61s* as shown in the screenshot below:
 
