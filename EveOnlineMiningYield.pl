@@ -53,6 +53,7 @@ sub print_ship_table
 sub print_drone_table
 {
 	my $mining_type = $_[0];
+	my $yield_type = $_[1];
 	my $headline_string = "|Ship";
 	my $column_separator = "|:-";
 
@@ -83,11 +84,11 @@ sub print_drone_table
 		{
 			if ($mining_type eq "ORE")
 			{
-				$out_string.= sprintf("|%s",  get_ore_drone_amount($drone_type, $ship));
+				$out_string.= sprintf("|%s",  get_ore_drone_amount($drone_type, $yield_type , $ship));
 			}
 			elsif ($mining_type eq "ICE")
 			{
-				$out_string.= sprintf("|%s",  get_ice_drone_amount($drone_type, $ship));
+				$out_string.= sprintf("|%s",  get_ice_drone_amount($drone_type, $yield_type , $ship));
 			}
 		}
 		$out_string.="|\n";
@@ -542,9 +543,6 @@ sub get_ice_mining_amount
 	}
 	else
 	{
-		
-
-
 		if ($yield_type eq "INGAME")
 		{
 			$out_string =sprintf("% 8.2f", 1000 / $Ice_Harvester_Cycle_Time );
@@ -556,9 +554,7 @@ sub get_ice_mining_amount
 		else
 		{
 			$out_string =sprintf("ERROR");
-		}		
-		
-		
+		}
 	}
 	return $out_string;
 }
@@ -566,7 +562,8 @@ sub get_ice_mining_amount
 sub get_ore_drone_amount
 {
 	my $drone_type = $_[0];
-	my $ship_type = $_[1];
+	my $yield_type = $_[1];
+	my $ship_type = $_[2];
 	my $drone_yield_per_second=0;
 	my $drone_base = 0;
 	my $number_of_drones=5;
@@ -574,7 +571,17 @@ sub get_ore_drone_amount
 	# skills 
 	my $Drone_Interfacing_Skill           = 5;
 	my $Mining_Drone_Operation_Skill      = 5;
-	my $Mining_Drone_Specialization_Skill = 4;
+	
+
+	my $Mining_Drone_Specialization_Skill = 5;
+
+	# exclude drone which do not benefit from Mining_Drone_Specialization_Skill
+	if ( ($drone_type eq "Mining Drone I") ||
+		($drone_type eq "Harvester Mining Drone") )
+	{
+		$Mining_Drone_Specialization_Skill = 0;
+	}
+
 	my $Industrial_Command_Ships_Skill    = 5;
 
 	if ($drone_type eq "Mining Drone I")
@@ -598,7 +605,7 @@ sub get_ore_drone_amount
 				($ship_type eq "Rorqual ICT1")||
 				($ship_type eq "Rorqual ICT2")))
 	{
-		$drone_base = 100;
+		$drone_base = 80;
 	}
 
 	if  ($ship_type eq "Venture")
@@ -613,10 +620,32 @@ sub get_ore_drone_amount
 			;
 		$number_of_drones = 2;
 	}
-
-	elsif  ( ($ship_type eq "Covetor") ||
-		  ($ship_type eq "Procurer")||
-		  ($ship_type eq "Retriever"))
+	elsif  ($ship_type eq "Endurance")
+	{
+		$drone_yield_per_second =$drone_base
+			* (1 + 0.1 * $Drone_Interfacing_Skill)
+			* (1 + 0.05 * $Mining_Drone_Operation_Skill)
+			* (1 + 0.02 * $Mining_Drone_Specialization_Skill)
+			* (1 + 0.15 ) # small mining drone augmentor II
+			* (1 + 0.15 ) # small mining drone augmentor II
+			;
+		
+		if ($drone_type eq "Harvester Mining Drone") 
+		{
+			$number_of_drones = 3;
+		}
+	}
+	elsif   (($ship_type eq "Covetor") || ($ship_type eq "Retriever"))
+	{
+		$drone_yield_per_second =$drone_base
+			* (1 + 0.1 * $Drone_Interfacing_Skill)
+			* (1 + 0.05 * $Mining_Drone_Operation_Skill)
+			* (1 + 0.02 * $Mining_Drone_Specialization_Skill)
+			* (1 + 0.15 ) # medium mining drone augmentor II
+			* (1 + 0.10 ) # medium mining drone augmentor I
+			;
+	}
+	elsif   ($ship_type eq "Procurer")
 	{
 		$drone_yield_per_second =$drone_base
 			* (1 + 0.1 * $Drone_Interfacing_Skill)
@@ -710,7 +739,15 @@ sub get_ore_drone_amount
 	}
 	else
 	{
-		$out_string =sprintf("% 8.2f", $drone_yield_per_second);
+		if ($yield_type eq "FULL")
+		{
+			$out_string =sprintf("% 8.2f", $drone_yield_per_second * $number_of_drones /60);
+		}
+		else
+		{
+			$out_string =sprintf("% 8.2f", $drone_yield_per_second);
+		}
+		
 	}
 	return $out_string;
 }
@@ -719,7 +756,8 @@ sub get_ore_drone_amount
 sub get_ice_drone_amount
 {
 	my $drone_type = $_[0];
-	my $ship_type = $_[1];
+	my $yield_type = $_[1];
+	my $ship_type = $_[2];
 	my $drone_cycle_duration=0;
 	my $drone_base = 0;
 	my $number_of_drones=5;
