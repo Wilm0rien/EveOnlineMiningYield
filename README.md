@@ -123,7 +123,7 @@ This value is calculated as followed:
 	printf("%3.2f", $drone_yield_per_second); # prints 2160.30
 ```
 
-The following tables shows the yield in m3 per 60s cycle *per drone* 
+The following tables shows the yield in m3 *per drone* 
 
 |Ship|Mining Drone I|Mining Drone II|Augmented Mining Drone|Harvester Mining Drone|Excavator Mining Drone|
 |:-|:-|:-|:-|:-|:-|
