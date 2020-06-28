@@ -17,29 +17,29 @@ All numbers in m3/s per mining laser (ingame values listed for proving the numbe
 
 |Ship|No Boost|Porpise Boot|Orca Boost|Rorqual Boost|Rorqual ICT1 Boost|Rorqual ICT2 Boost|
 |:-|:-|:-|:-|:-|:-|:-|
-|     Venture|    4.47|    7.29|    7.50|    7.98|    9.92|   10.43|
-|   Endurance|   10.62|   17.32|   17.83|   18.95|   23.57|   24.78|
-|    Prospect|    7.24|   11.80|   12.15|   12.91|   16.06|   16.88|
-|    Procurer|    9.48|   15.46|   15.92|   16.92|   21.04|   22.12|
-|   Retriever|   10.33|   16.84|   17.34|   18.42|   22.92|   24.09|
-|     Covetor|   13.77|   22.45|   23.12|   24.57|   30.55|   32.12|
-|       Skiff|   11.48|   18.71|   19.26|   20.47|   25.46|   26.77|
-|    Mackinaw|   11.48|   18.71|   19.26|   20.47|   25.46|   26.77|
-|        Hulk|   16.20|   26.42|   27.20|   28.90|   35.95|   37.79|
+|     Venture|    4.47|    7.29|    7.50|    7.98|   10.43|   11.11|
+|   Endurance|   10.62|   17.32|   17.83|   18.95|   24.78|   26.40|
+|    Prospect|    7.24|   11.80|   12.15|   12.91|   16.88|   17.99|
+|    Procurer|    9.48|   15.46|   15.92|   16.92|   22.12|   23.57|
+|   Retriever|   10.33|   16.84|   17.34|   18.42|   24.09|   25.67|
+|     Covetor|   13.77|   22.45|   23.12|   24.57|   32.12|   34.23|
+|       Skiff|   11.48|   18.71|   19.26|   20.47|   26.77|   28.52|
+|    Mackinaw|   11.48|   18.71|   19.26|   20.47|   26.77|   28.52|
+|        Hulk|   16.20|   26.42|   27.20|   28.90|   37.79|   40.27|
 
 All numbers in m3/s per ship (yield multiplied with number of turrets)
 
 |Ship|No Boost|Porpise Boot|Orca Boost|Rorqual Boost|Rorqual ICT1 Boost|Rorqual ICT2 Boost|
 |:-|:-|:-|:-|:-|:-|:-|
-|     Venture|    8.94|   14.58|   15.01|   15.95|   19.84|   20.86|
-|   Endurance|   10.62|   17.32|   17.83|   18.95|   23.57|   24.78|
-|    Prospect|   14.47|   23.60|   24.30|   25.82|   32.12|   33.76|
-|    Procurer|   18.97|   30.92|   31.84|   33.83|   42.08|   44.24|
-|   Retriever|   20.66|   33.68|   34.67|   36.85|   45.83|   48.18|
-|     Covetor|   27.54|   44.91|   46.23|   49.13|   61.11|   64.24|
-|       Skiff|   22.95|   37.42|   38.53|   40.94|   50.92|   53.53|
-|    Mackinaw|   22.95|   37.42|   38.53|   40.94|   50.92|   53.53|
-|        Hulk|   32.40|   52.83|   54.39|   57.80|   71.89|   75.58|
+|     Venture|    8.94|   14.58|   15.01|   15.95|   20.86|   22.22|
+|   Endurance|   10.62|   17.32|   17.83|   18.95|   24.78|   26.40|
+|    Prospect|   14.47|   23.60|   24.30|   25.82|   33.76|   35.98|
+|    Procurer|   18.97|   30.92|   31.84|   33.83|   44.24|   47.14|
+|   Retriever|   20.66|   33.68|   34.67|   36.85|   48.18|   51.34|
+|     Covetor|   27.54|   44.91|   46.23|   49.13|   64.24|   68.45|
+|       Skiff|   22.95|   37.42|   38.53|   40.94|   53.53|   57.04|
+|    Mackinaw|   22.95|   37.42|   38.53|   40.94|   53.53|   57.04|
+|        Hulk|   32.40|   52.83|   54.39|   57.80|   75.58|   80.53|
 
 The formular behind this table is calculated as followed:
 
@@ -170,31 +170,33 @@ The code to generate these tables is [here](EveOnlineMiningYield.pl)
 
 All numbers in m3/s per ice harvester (ingame values listed for proving the numbers to be correct)
 
+![ice-in-game-mining-yield](HulkMaxBoostIce.jpg)
+
 |Ship|No Boost|Porpise Boot|Orca Boost|Rorqual Boost|Rorqual ICT1 Boost|Rorqual ICT2 Boost|
 |:-|:-|:-|:-|:-|:-|:-|
 |     Venture|     N/A|     N/A|     N/A|     N/A|     N/A|     N/A|
-|   Endurance|   20.07|   32.72|   33.69|   35.80|   44.53|   46.81|
-|    Prospect|    6.20|   10.11|   10.41|   11.06|   13.76|   14.47|
-|    Procurer|   10.70|   17.45|   17.96|   19.09|   23.74|   24.96|
-|   Retriever|   11.76|   19.17|   19.74|   20.98|   26.09|   27.43|
-|     Covetor|   15.68|   25.56|   26.32|   27.97|   34.79|   36.57|
-|       Skiff|   13.06|   21.30|   21.93|   23.31|   28.99|   30.47|
-|    Mackinaw|   13.06|   21.30|   21.93|   23.31|   28.99|   30.47|
-|        Hulk|   18.44|   30.07|   30.96|   32.90|   40.92|   43.02|
+|   Endurance|   20.07|   32.72|   33.69|   35.80|   46.81|   49.88|
+|    Prospect|    6.20|   10.11|   10.41|   11.06|   14.47|   15.41|
+|    Procurer|   10.70|   17.45|   17.96|   19.09|   24.96|   26.59|
+|   Retriever|   11.76|   19.17|   19.74|   20.98|   27.43|   29.22|
+|     Covetor|   15.68|   25.56|   26.32|   27.97|   36.57|   38.97|
+|       Skiff|   13.06|   21.30|   21.93|   23.31|   30.47|   32.47|
+|    Mackinaw|   13.06|   21.30|   21.93|   23.31|   30.47|   32.47|
+|        Hulk|   18.44|   30.07|   30.96|   32.90|   43.02|   45.84|
 
 All numbers in m3/s per ship (yield multiplied with number of turrets)
 
 |Ship|No Boost|Porpise Boot|Orca Boost|Rorqual Boost|Rorqual ICT1 Boost|Rorqual ICT2 Boost|
 |:-|:-|:-|:-|:-|:-|:-|
 |     Venture|     N/A|     N/A|     N/A|     N/A|     N/A|     N/A|
-|   Endurance|   20.07|   32.72|   33.69|   35.80|   44.53|   46.81|
-|    Prospect|   12.40|   20.23|   20.82|   22.13|   27.52|   28.93|
-|    Procurer|   21.40|   34.89|   35.92|   38.18|   47.48|   49.92|
-|   Retriever|   23.52|   38.34|   39.48|   41.95|   52.18|   54.85|
-|     Covetor|   31.35|   51.13|   52.64|   55.94|   69.57|   73.14|
-|       Skiff|   26.13|   42.61|   43.86|   46.61|   57.98|   60.95|
-|    Mackinaw|   26.13|   42.61|   43.86|   46.61|   57.98|   60.95|
-|        Hulk|   36.89|   60.15|   61.92|   65.81|   81.85|   86.04|
+|   Endurance|   20.07|   32.72|   33.69|   35.80|   46.81|   49.88|
+|    Prospect|   12.40|   20.23|   20.82|   22.13|   28.93|   30.83|
+|    Procurer|   21.40|   34.89|   35.92|   38.18|   49.92|   53.19|
+|   Retriever|   23.52|   38.34|   39.48|   41.95|   54.85|   58.45|
+|     Covetor|   31.35|   51.13|   52.64|   55.94|   73.14|   77.93|
+|       Skiff|   26.13|   42.61|   43.86|   46.61|   60.95|   64.94|
+|    Mackinaw|   26.13|   42.61|   43.86|   46.61|   60.95|   64.94|
+|        Hulk|   36.89|   60.15|   61.92|   65.81|   86.04|   91.68|
 
 # Gas Mining Yield
 *To be done*

@@ -8,12 +8,12 @@ my @ice_drone_list = ("Ice Harvesting Drone I", "Ice Harvesting Drone II", "Augm
 my @boost_list = ("no Boost", "Porpise Boot", "Orca Boost", "Rorqual Boost", "Rorqual ICT1 Boost", "Rorqual ICT2 Boost");
 
 print "\nORE INGAME\n";
-print_ship_table("ICE", "INGAME");
+print_ship_table("ORE", "INGAME");
 print "\nORE FULL\n";
-print_ship_table("ICE", "FULL");
-print "\nICE FULL\n";
-print_ship_table("ICE", "INGAME");
+print_ship_table("ORE", "FULL");
 print "\nICE INGAME\n";
+print_ship_table("ICE", "INGAME");
+print "\nICE FULL\n";
 print_ship_table("ICE", "FULL");
 
 sub print_ship_table
@@ -108,8 +108,8 @@ sub get_boost_factor
 	# boost factors
 	my $Mining_Foreman_Mindlink_bonus_1  = (1+0.25);
 	my $Tech_2_Command_Burst_Modules_1   = (1+0.25);
-	my $T1_Industrial_Core               = (1+0.25);
-	my $T2_Industrial_Core               = (1+0.30);
+	my $T1_Industrial_Core               = (1+0.30);
+	my $T2_Industrial_Core               = (1+0.36);
 	my $Mining_Laser_optimization_base_1 = 0.15;
 
 	# caluclate boost factors
