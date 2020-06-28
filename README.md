@@ -6,7 +6,7 @@ This page is currently limited to ore yields (except Mercoxit) but will be exten
 # Ore Mining Yield
 
 ## Mining Ship Yields
-Meanwhile the game displays the outcome of mining yield in the hover information of the mining laser. For example when a hulk with is boosted to the maximum possible value it displays a 37.8m3/s value on its mining laser see this example screenshot: 
+The game displays the outcome of mining yield in the hover information of the mining laser. For example when a hulk with is boosted to the maximum possible value it displays a 37.8m3/s value on its mining laser see this example screenshot: 
 
 ![in-game-mining-yield](HulkMaxBoost.jpg)
 
@@ -17,7 +17,9 @@ All numbers in m3/s per mining laser (ingame values listed for proving the numbe
 
 |Ship|No Boost|Porpise Boot|Orca Boost|Rorqual Boost|Rorqual ICT1 Boost|Rorqual ICT2 Boost|
 |:-|:-|:-|:-|:-|:-|:-|
-|     Venture|    4.26|    6.94|    7.15|    7.60|    9.45|    9.93|
+|     Venture|    4.47|    7.29|    7.50|    7.98|    9.92|   10.43|
+|   Endurance|   10.62|   17.32|   17.83|   18.95|   23.57|   24.78|
+|    Prospect|    7.24|   11.80|   12.15|   12.91|   16.06|   16.88|
 |    Procurer|    9.48|   15.46|   15.92|   16.92|   21.04|   22.12|
 |   Retriever|   10.33|   16.84|   17.34|   18.42|   22.92|   24.09|
 |     Covetor|   13.77|   22.45|   23.12|   24.57|   30.55|   32.12|
@@ -25,11 +27,13 @@ All numbers in m3/s per mining laser (ingame values listed for proving the numbe
 |    Mackinaw|   11.48|   18.71|   19.26|   20.47|   25.46|   26.77|
 |        Hulk|   16.20|   26.42|   27.20|   28.90|   35.95|   37.79|
 
-All numbers in m3/s per ship (converted values for better comparability)
+All numbers in m3/s per ship (yield multiplied with number of turrets)
 
-|Ship|no Boost|Porpise Boot|Orca Boost|Rorqual Boost|Rorqual ICT1 Boost|Rorqual ICT2 Boost|
+|Ship|No Boost|Porpise Boot|Orca Boost|Rorqual Boost|Rorqual ICT1 Boost|Rorqual ICT2 Boost|
 |:-|:-|:-|:-|:-|:-|:-|
-|     Venture|    8.52|   13.89|   14.30|   15.19|   18.89|   19.86|
+|     Venture|    8.94|   14.58|   15.01|   15.95|   19.84|   20.86|
+|   Endurance|   10.62|   17.32|   17.83|   18.95|   23.57|   24.78|
+|    Prospect|   14.47|   23.60|   24.30|   25.82|   32.12|   33.76|
 |    Procurer|   18.97|   30.92|   31.84|   33.83|   42.08|   44.24|
 |   Retriever|   20.66|   33.68|   34.67|   36.85|   45.83|   48.18|
 |     Covetor|   27.54|   44.91|   46.23|   49.13|   61.11|   64.24|
@@ -163,7 +167,34 @@ All numbers in m3/s per ship with max drones (converted values for better compar
 The code to generate these tables is [here](EveOnlineMiningYield.pl)
 
 # Ice Mining Yield
-*To be done*
+
+All numbers in m3/s per ice harvester (ingame values listed for proving the numbers to be correct)
+
+|Ship|No Boost|Porpise Boot|Orca Boost|Rorqual Boost|Rorqual ICT1 Boost|Rorqual ICT2 Boost|
+|:-|:-|:-|:-|:-|:-|:-|
+|     Venture|     N/A|     N/A|     N/A|     N/A|     N/A|     N/A|
+|   Endurance|   20.07|   32.72|   33.69|   35.80|   44.53|   46.81|
+|    Prospect|    6.20|   10.11|   10.41|   11.06|   13.76|   14.47|
+|    Procurer|   10.70|   17.45|   17.96|   19.09|   23.74|   24.96|
+|   Retriever|   11.76|   19.17|   19.74|   20.98|   26.09|   27.43|
+|     Covetor|   15.68|   25.56|   26.32|   27.97|   34.79|   36.57|
+|       Skiff|   13.06|   21.30|   21.93|   23.31|   28.99|   30.47|
+|    Mackinaw|   13.06|   21.30|   21.93|   23.31|   28.99|   30.47|
+|        Hulk|   18.44|   30.07|   30.96|   32.90|   40.92|   43.02|
+
+All numbers in m3/s per ship (yield multiplied with number of turrets)
+
+|Ship|No Boost|Porpise Boot|Orca Boost|Rorqual Boost|Rorqual ICT1 Boost|Rorqual ICT2 Boost|
+|:-|:-|:-|:-|:-|:-|:-|
+|     Venture|     N/A|     N/A|     N/A|     N/A|     N/A|     N/A|
+|   Endurance|   20.07|   32.72|   33.69|   35.80|   44.53|   46.81|
+|    Prospect|   12.40|   20.23|   20.82|   22.13|   27.52|   28.93|
+|    Procurer|   21.40|   34.89|   35.92|   38.18|   47.48|   49.92|
+|   Retriever|   23.52|   38.34|   39.48|   41.95|   52.18|   54.85|
+|     Covetor|   31.35|   51.13|   52.64|   55.94|   69.57|   73.14|
+|       Skiff|   26.13|   42.61|   43.86|   46.61|   57.98|   60.95|
+|    Mackinaw|   26.13|   42.61|   43.86|   46.61|   57.98|   60.95|
+|        Hulk|   36.89|   60.15|   61.92|   65.81|   81.85|   86.04|
 
 # Gas Mining Yield
 *To be done*

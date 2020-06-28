@@ -7,18 +7,19 @@ my @ice_drone_list = ("Ice Harvesting Drone I", "Ice Harvesting Drone II", "Augm
 
 my @boost_list = ("no Boost", "Porpise Boot", "Orca Boost", "Rorqual Boost", "Rorqual ICT1 Boost", "Rorqual ICT2 Boost");
 
-print_drone_table("ORE");
-#print_drone_table("ICE");
-print "\n";
-#print_ship_table("ICE");
-
-print_ship_table("ORE");
-
-
+print "\nORE INGAME\n";
+print_ship_table("ICE", "INGAME");
+print "\nORE FULL\n";
+print_ship_table("ICE", "FULL");
+print "\nICE FULL\n";
+print_ship_table("ICE", "INGAME");
+print "\nICE INGAME\n";
+print_ship_table("ICE", "FULL");
 
 sub print_ship_table
 {
 	my $mining_type = $_[0];
+	my $yield_type = $_[1];
 	my $headline_string = "|Ship";
 	my $column_separator = "|:-";
 	foreach my $boost_type (@boost_list)
@@ -37,11 +38,11 @@ sub print_ship_table
 		{
 			if ($mining_type eq "ORE")
 			{
-				$out_string.= sprintf("|%s",  get_ore_mining_amount($boost_type, $ship));
+				$out_string.= sprintf("|%s",  get_ore_mining_amount($boost_type, $yield_type, $ship));
 			}
 			elsif ($mining_type eq "ICE")
 			{
-				$out_string.= sprintf("|%s",  get_ice_mining_amount($boost_type, $ship));
+				$out_string.= sprintf("|%s",  get_ice_mining_amount($boost_type, $yield_type, $ship));
 			}
 		}
 		$out_string.="|\n";
@@ -171,7 +172,8 @@ sub get_boost_factor
 sub get_ore_mining_amount
 {
 	my $boost_type              = $_[0];
-	my $ship_type               = $_[1];
+	my $yield_type              = $_[1];
+	my $ship_type               = $_[2];
 
 	my $mining_yield_per_second = 0;
 
@@ -181,7 +183,7 @@ sub get_ore_mining_amount
 	my $Mining_Barge_Skill             = 5;
 	my $Exhumer_Skill                  = 5;
 	my $Mining_Frigate_Skill          = 5; 
-	my $Expedition_Frigates_Skill     = 2;
+	my $Expedition_Frigates_Skill     = 5;
 
 	# factors 
 	my $Highwall_Mining_MX1005_Implant   = (1+0.05);
@@ -218,9 +220,8 @@ sub get_ore_mining_amount
 		  * (1+0.05*$Astrogeology_Skill) # regular skill bonus
 		  * (1+$Venture_Role_Bonus)      # role bonus
 		  * $Highwall_Mining_MX1005_Implant
-		  * $mining_upgrades_x3
+		  * (1+$mining_upgrades_x1)
 				;
-
 		my $venture_base_time = ($MinerII_cycle * $boost_factor);
 
 		if ($venture_base_time > 0 )
@@ -380,7 +381,18 @@ sub get_ore_mining_amount
 	}
 	else
 	{
-		$out_string =sprintf("% 8.2f", $mining_yield_per_second  );
+		if ($yield_type eq "INGAME")
+		{
+			$out_string =sprintf("% 8.2f", $mining_yield_per_second  );
+		}
+		elsif ($yield_type eq "FULL")
+		{
+			$out_string =sprintf("% 8.2f", $mining_yield_per_second  * $turret_factor);
+		}
+		else
+		{
+			$out_string =sprintf("ERROR");
+		}
 	}
 	return $out_string;
 }
@@ -389,7 +401,8 @@ sub get_ore_mining_amount
 sub get_ice_mining_amount
 {
 	my $boost_type              = $_[0];
-	my $ship_type               = $_[1];
+	my $yield_type              = $_[1];
+	my $ship_type               = $_[2];
 
 	my $Ice_Harvester_Cycle_Time = 0;
 
@@ -400,7 +413,7 @@ sub get_ice_mining_amount
 	my $Ice_Harvesting_Skill           = 5;
 
 	my $Mining_Frigate_Skill             = 5;
-	my $Expedition_Frigates_Skill             = 2;
+	my $Expedition_Frigates_Skill             = 5;
 
 	# factors
 	my $Ice_Harvester_II_Base_Duration = 200;
@@ -512,7 +525,7 @@ sub get_ice_mining_amount
 		$Ice_Harvester_Cycle_Time = $Ice_Harvester_II_Base_Duration
 									* (1 - 0.25) # role bonus
 									* (1 - 0.02 * $Mining_Barge_Skill )
-									* (1 - 0.02 * $Exhumer_Skill )
+									* (1 - 0.03 * $Exhumer_Skill )
 									* (1 - 0.05 * $Ice_Harvesting_Skill )
 									* (1 - 0.12 ) # Medium Ice Harvesting Accelerator I
 									* (1 - $Ice_Harvester_Upgrade_II ) 
@@ -529,7 +542,23 @@ sub get_ice_mining_amount
 	}
 	else
 	{
-		$out_string =sprintf("% 8.2f", 1000 / $Ice_Harvester_Cycle_Time );
+		
+
+
+		if ($yield_type eq "INGAME")
+		{
+			$out_string =sprintf("% 8.2f", 1000 / $Ice_Harvester_Cycle_Time );
+		}
+		elsif ($yield_type eq "FULL")
+		{
+			$out_string =sprintf("% 8.2f", 1000 / $Ice_Harvester_Cycle_Time * $turret_factor );
+		}
+		else
+		{
+			$out_string =sprintf("ERROR");
+		}		
+		
+		
 	}
 	return $out_string;
 }
