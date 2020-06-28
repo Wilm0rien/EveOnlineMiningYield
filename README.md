@@ -56,7 +56,7 @@ The formular behind this table is calculated as followed:
 	my $Mining_Foreman_Mindlink_bonus_1  = (1+0.25);
 	my $Mining_Laser_optimization_base_1 = 0.15;
 	my $Tech_2_Command_Burst_Modules_1   = (1+0.25);
-	my $T2_Industrial_Core               = (1+0.30);
+	my $T2_Industrial_Core               = (1+0.36);
 	my $Highwall_Mining_MX1005_Implant   = (1+0.05);
 	my $mining_upgrades_x3               = (1+0.295);
 
@@ -91,7 +91,7 @@ The formular behind this table is calculated as followed:
 
 	my $mining_yield_per_second = $hulk_base_yield / $hulk_base_time;
 
-	printf("%3.2f", $mining_yield_per_second); # prints 37.79
+	printf("%3.2f", $mining_yield_per_second); # prints 40.27
 ```
 ## Mining Drone Yields
 The Mining amount of ore collected via drones is listed in the attributes section of the info window for each drone.
