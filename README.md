@@ -5,14 +5,14 @@ Currenlty this page excludes Mercoxit and Gas yields.
 
 # Ore Mining Yield
 
-## Ore Mining Ship Yields
-The game displays the outcome of mining yield in the tooltip of the mining laser. For example when a hulk with is boosted to the maximum possible value it displays a 40.3m3/s value on its mining laser see this example screenshot: 
+Yield values for Ore which can be found [anywhere](https://imperium.news/eve-mining/what-to-mine/#ore_distribution)
+
+## Ship Yields
+The game displays the outcome of mining yield in the tooltip of the mining laser. For example when a hulk is boosted to the maximum possible value it displays a **40.3m3/s** value on its mining laser see this example screenshot: 
 
 ![in-game-mining-yield](HulkMaxBoost.jpg)
 
-This table shows the different outcome of mining yield with the different ships and boost types with all skills set to 5.
-
-All numbers in m3/s per mining laser (ingame values)
+The following table shows the yield in m3/s per *mining laser* (ingame values)
 
 |Ship|No Boost|Porpise Boot|Orca Boost|Rorqual Boost|Rorqual ICT1 Boost|Rorqual ICT2 Boost|
 |:-|:-|:-|:-|:-|:-|:-|
@@ -26,7 +26,7 @@ All numbers in m3/s per mining laser (ingame values)
 |    Mackinaw|   11.48|   18.71|   19.26|   20.47|   26.77|   28.52|
 |        Hulk|   16.20|   26.42|   27.20|   28.90|   37.79|   40.27|
 
-All numbers in m3/s per ship (yield multiplied with number of turrets)
+The following table shows the Yield in m3/s per *ship* (multiple mining lasers)
 
 |Ship|No Boost|Porpise Boot|Orca Boost|Rorqual Boost|Rorqual ICT1 Boost|Rorqual ICT2 Boost|
 |:-|:-|:-|:-|:-|:-|:-|
@@ -93,9 +93,10 @@ The formular behind this table is calculated as followed:
 	printf("%3.2f", $mining_yield_per_second); # prints 40.27
 ```
 ## Ore Mining Drone Yields
+
 The Mining amount of ore collected via drones is listed in the attributes section of the info window for each drone.
 
-In this example it is 2160.30 m3
+The highest in-game value is 2160.30 m3
 
 ![in-game-drone-yield](ExcavatorDroneMaxBoost.jpg)
 
@@ -122,18 +123,7 @@ This value is calculated as followed:
 	printf("%3.2f", $drone_yield_per_second); # prints 2160.30
 ```
 
-|Ship|Fitting Note|
-|:-|:-|
-|Venture|Can only operate two drones.|
-|Prospect|Does not have a Drone Bay|
-|Endurance|2 x Mining Drone Augmentor II + three harvester drones and five of all other drone types.|
-|Covetor+Retreiver|1 x Mining Drone Augmentor II and 1 x Mining Drone Augmentor I|
-|Procurer|2 x Mining Drone Augmentor II and 1 x Mining Drone Augmentor I|
-|Skiff+Mack+Hulk|2 x Mining Drone Augmentor II|
-
-Note2: the Mining Drone I and Harvester Mining Drone do not get a bonus from the Mining Drone Specialization Skill
-
-All numbers in m3 per 60s cycle per drone (ingame values listed for proving the numbers to be correct)
+The following tables shows the yield in m3 per 60s cycle *per drone* 
 
 |Ship|Mining Drone I|Mining Drone II|Augmented Mining Drone|Harvester Mining Drone|Excavator Mining Drone|
 |:-|:-|:-|:-|:-|:-|
@@ -152,10 +142,19 @@ All numbers in m3 per 60s cycle per drone (ingame values listed for proving the 
 |Rorqual ICT1|  511.44|  742.60|  832.62|  859.21| 1800.25|
 |Rorqual ICT2|  613.72|  891.13|  999.14| 1031.05| 2160.30|
 
+Some ships allow fitting Drone Mining Augmentor Rigs. The following table these are listed as T1 for *Mining Drone Augmentor I* and T2 for *Mining Drone Augmentor II*
 
-All numbers in m3/s per ship with max drones (converted values for better comparability)
+|Ship|Number of Drones|Drone Rigs|
+|:-|:-|:-|
+|Venture|2|2 x T2 + 1 x T1|
+|Endurance|5 (only 3 Harvester)|2 x T2 + 1 x T1|
+|Prospect|no drone bay|N/A|
+|Covetor + Retriever|5|1 x T2 + 1 x T1|
+|Procurer|5|2 x T2 + 1 x T1|
+|Mackinaw, Skiff, Hulk|5|2 x T2|
+|Porpoise, Orca, Rorqual|5|2 x T2 + 1x T1|
 
-** NOTE: Actual yiel is less than this because Drone travel time is not included! **
+The following table shows the yield in m3/s per ship but *does not consider the yield loss caused by drone travel time*. The last two rows shows if a rorqual as the Industrial Core I (ICT1) or Industrial Core II (ICT2) being active.
 
 |Ship|Mining Drone I|Mining Drone II|Augmented Mining Drone|Harvester Mining Drone|Excavator Mining Drone|
 |:-|:-|:-|:-|:-|:-|
@@ -177,13 +176,15 @@ All numbers in m3/s per ship with max drones (converted values for better compar
 
 # Ice Mining Yield
 
+Yield values for Ice which can be found [in ice belts](https://imperium.news/eve-mining/what-to-mine/#ice_mining)
+
 ## Ice Mining Ship Yields
 
 Max yield for Ice shown in screenshot below
 
 ![ice-in-game-mining-yield](HulkMaxBoostIce.jpg)
 
-All numbers in m3/s per ice harvester (ingame values)
+The following table shows the yield in m3/s per *ice harvester* (ingame values)
 
 |Ship|No Boost|Porpise Boot|Orca Boost|Rorqual Boost|Rorqual ICT1 Boost|Rorqual ICT2 Boost|
 |:-|:-|:-|:-|:-|:-|:-|
@@ -197,7 +198,7 @@ All numbers in m3/s per ice harvester (ingame values)
 |    Mackinaw|   13.06|   21.30|   21.93|   23.31|   30.47|   32.47|
 |        Hulk|   18.44|   30.07|   30.96|   32.90|   43.02|   45.84|
 
-All numbers in m3/s per ship (yield multiplied with number of turrets)
+The following table shows the Yield in m3/s per *ship* (multiple mining lasers)
 
 |Ship|No Boost|Porpise Boot|Orca Boost|Rorqual Boost|Rorqual ICT1 Boost|Rorqual ICT2 Boost|
 |:-|:-|:-|:-|:-|:-|:-|
@@ -252,7 +253,7 @@ printf("%3.2f", 1000 / $Ice_Harvester_Cycle_Time ) # prints "45.84"
 
 ## Ice Mining Drone Yields
 
-Max value of a harvester mining drone
+The cycle time of a drone ice harvester is listed in the info windows of each harvester drone. 
 
 ![ice-in-game-mining-yield](HarvesterDroneMaxBoost.jpg)
 
@@ -276,6 +277,25 @@ my $drone_cycle_duration =$Excavator_Ice_Harvesting_Drone_Duration
 printf("%3.2f", $drone_cycle_duration ) # prints 13.61
 ```
 
+Note2: the Mining Drone I and Harvester Mining Drone do not get a bonus from the Mining Drone Specialization Skill
+
+The cycle time varies depending of the number of Drone Mining Augmentor Rigs fitted to the ship. Some ships (Venture, Prospect, Endurance, Retriever) cannot use the harvester mining drone becacause there is not enough room in the drone bay.
+Further most ships can only store one harvester drone in the drone bay. Only 1 harvester drone can be launched because of the bandwidth needed per drone. Only the rorqual may launch more than one drone. 
+
+|Ship|Number of Drones|Drone Rigs|
+|:-|:-|:-|
+|Venture|0|N/A|
+|Prospect|0|N/A|
+|Endurance|0|N/A|
+|Retriever|0|N/A|
+|Covetor|1|no drone rigs|
+|Procurer|1|2 x T2 + 1 x T1|
+|Procurer, Skiff, Mackinaw, Hulk|1|1 x T2|
+|Porpoise, Orca, Rorqual|1|2 x T2 + 1x T1|
+|Rorqual|2 x T2 drones or 5x excavator|2 x T2 + 1x T1|
+
+The following tables shows the listed cycle time for a drone depending on which ship is used with the rigs listed above. 
+
 |Ship|Ice Harvesting Drone I|Ice Harvesting Drone II|Augmented Ice Harvesting Drone|Excavator Ice Harvesting Drone|
 |:-|:-|:-|:-|:-|
 |     Venture|     N/A|     N/A|     N/A|     N/A|
@@ -294,7 +314,7 @@ printf("%3.2f", $drone_cycle_duration ) # prints 13.61
 |Rorqual ICT2|   14.48|   13.17|   12.29|   13.61|
 
 
-All numbers in m3/s per ship (yield multiplied with number of drones)
+The following table shows the yield in m3/s per ship but *does not consider the yield loss caused by drone travel time*. 
 
 |Ship|Ice Harvesting Drone I|Ice Harvesting Drone II|Augmented Ice Harvesting Drone|Excavator Ice Harvesting Drone|
 |:-|:-|:-|:-|:-|
