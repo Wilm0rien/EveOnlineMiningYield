@@ -1,19 +1,18 @@
 # EveOnlineMiningYield
 This is a followup to a [reddit post](https://www.reddit.com/r/Eve/comments/5bp0sm/mining_yield_with_the_november_update/) which shows the comparison of the different combinations of mining ships and boost.
 
-This page is currently limited to ore yields (except Mercoxit) but will be extended to ice and gas.
+Currenlty this page excludes Mercoxit and Gas yields.
 
 # Ore Mining Yield
 
-## Mining Ship Yields
-The game displays the outcome of mining yield in the hover information of the mining laser. For example when a hulk with is boosted to the maximum possible value it displays a 37.8m3/s value on its mining laser see this example screenshot: 
+## Ore Mining Ship Yields
+The game displays the outcome of mining yield in the tooltip of the mining laser. For example when a hulk with is boosted to the maximum possible value it displays a 40.3m3/s value on its mining laser see this example screenshot: 
 
 ![in-game-mining-yield](HulkMaxBoost.jpg)
 
 This table shows the different outcome of mining yield with the different ships and boost types with all skills set to 5.
 
-
-All numbers in m3/s per mining laser (ingame values listed for proving the numbers to be correct)
+All numbers in m3/s per mining laser (ingame values)
 
 |Ship|No Boost|Porpise Boot|Orca Boost|Rorqual Boost|Rorqual ICT1 Boost|Rorqual ICT2 Boost|
 |:-|:-|:-|:-|:-|:-|:-|
@@ -93,10 +92,10 @@ The formular behind this table is calculated as followed:
 
 	printf("%3.2f", $mining_yield_per_second); # prints 40.27
 ```
-## Mining Drone Yields
+## Ore Mining Drone Yields
 The Mining amount of ore collected via drones is listed in the attributes section of the info window for each drone.
 
-In this example it is 2651.28 m3
+In this example it is 2160.30 m3
 
 ![in-game-drone-yield](ExcavatorDroneMaxBoost.jpg)
 
@@ -105,11 +104,11 @@ This value is calculated as followed:
 	# skills 
 	my $Drone_Interfacing_Skill           = 5;
 	my $Mining_Drone_Operation_Skill      = 5;
-	my $Mining_Drone_Specialization_Skill = 4; # example value not maxed.
+	my $Mining_Drone_Specialization_Skill = 5;
 	my $Industrial_Command_Ships_Skill    = 5;
 
 	# Excavator Mining Drone base yield
-	my $drone_base = 100;
+	my $drone_base = 80;
 	my $drone_yield_per_second = $drone_base
 		* (1 + 0.1 * $Industrial_Command_Ships_Skill)
 		* (1 + 0.1 * $Drone_Interfacing_Skill)
@@ -120,7 +119,7 @@ This value is calculated as followed:
 		* (1 + 0.10 ) # medium mining drone augmentor I
 		* (1 + 5.00 ); # 500% ic2 bonus
 
-	printf("%3.2f", $drone_yield_per_second); # prints 2651.28
+	printf("%3.2f", $drone_yield_per_second); # prints 2160.30
 ```
 
 |Ship|Fitting Note|
@@ -154,9 +153,9 @@ All numbers in m3 per 60s cycle per drone (ingame values listed for proving the 
 |Rorqual ICT2|  613.72|  891.13|  999.14| 1031.05| 2160.30|
 
 
-[eXistence_42](https://www.reddit.com/user/eXistence_42) [requested](https://www.reddit.com/r/Eve/comments/ai2oy4/eveonlineminingyield_calculation_only_for_ore/eekm9bu) the mining yield for the drones to be comparable to the ship yield numbers. For this purpose the yield value is multiplied by the number of drones (2 for the venture and 5 for other ships) and divided by the 60s cycle duration. Note that it leaves out the travel time between the drones and the ship, so the real numbers will be lower than listed here.
-
 All numbers in m3/s per ship with max drones (converted values for better comparability)
+
+** NOTE: Actual yiel is less than this because Drone travel time is not included! **
 
 |Ship|Mining Drone I|Mining Drone II|Augmented Mining Drone|Harvester Mining Drone|Excavator Mining Drone|
 |:-|:-|:-|:-|:-|:-|
@@ -175,14 +174,16 @@ All numbers in m3/s per ship with max drones (converted values for better compar
 |Rorqual ICT1|   42.62|   61.88|   69.38|   71.60|  150.02|
 |Rorqual ICT2|   51.14|   74.26|   83.26|   85.92|  180.03|
 
-## Code
-The code to generate these tables is [here](EveOnlineMiningYield.pl)
 
 # Ice Mining Yield
 
-All numbers in m3/s per ice harvester (ingame values listed for proving the numbers to be correct)
+## Ice Mining Ship Yields
+
+Max yield for Ice shown in screenshot below
 
 ![ice-in-game-mining-yield](HulkMaxBoostIce.jpg)
+
+All numbers in m3/s per ice harvester (ingame values)
 
 |Ship|No Boost|Porpise Boot|Orca Boost|Rorqual Boost|Rorqual ICT1 Boost|Rorqual ICT2 Boost|
 |:-|:-|:-|:-|:-|:-|:-|
@@ -210,8 +211,113 @@ All numbers in m3/s per ship (yield multiplied with number of turrets)
 |    Mackinaw|   26.13|   42.61|   43.86|   46.61|   60.95|   64.94|
 |        Hulk|   36.89|   60.15|   61.92|   65.81|   86.04|   91.68|
 
+The formular behind this table is calculated as followed:
+
+```perl
+my $Mining_Director_Skill          = 5;
+my $Capital_Industrial_Ships_Skill = 5;
+my $Mining_Foreman_Mindlink_bonus_1  = (1+0.25);
+my $Tech_2_Command_Burst_Modules_1   = (1+0.25);
+my $T2_Industrial_Core               = (1+0.36);
+my $Mining_Laser_optimization_base_1 = 0.15;
+
+my $boost_factor = 1 - $Mining_Laser_optimization_base_1
+			* $Tech_2_Command_Burst_Modules_1
+			* $T2_Industrial_Core
+			* (1+0.1 * $Mining_Director_Skill)
+			* $Mining_Foreman_Mindlink_bonus_1
+			* (1+0.05*$Capital_Industrial_Ships_Skill) ;
+
+my $Mining_Barge_Skill             = 5;
+my $Exhumer_Skill                  = 5;
+my $Ice_Harvesting_Skill           = 5;
+my $Ice_Harvester_II_Base_Duration = 200;
+my $Ice_Harvester_Upgrade_II       = 0.09;
+my $Yeti_Harvesting_IH_1005_Implant = 0.05;
+
+my $Ice_Harvester_Cycle_Time = $Ice_Harvester_II_Base_Duration
+							* (1 - 0.25) # role bonus
+							* (1 - 0.02 * $Mining_Barge_Skill )
+							* (1 - 0.03 * $Exhumer_Skill )
+							* (1 - 0.05 * $Ice_Harvesting_Skill )
+							* (1 - 0.12 ) # Medium Ice Harvesting Accelerator I
+							* (1 - $Ice_Harvester_Upgrade_II ) 
+							* (1 - $Ice_Harvester_Upgrade_II) 
+							* (1 - $Ice_Harvester_Upgrade_II) 
+							* (1 - $Yeti_Harvesting_IH_1005_Implant) 
+							* $boost_factor;
+
+printf("%3.2f", 1000 / $Ice_Harvester_Cycle_Time ) # prints "45.84"
+```
+
+## Ice Mining Drone Yields
+
+Max value of a harvester mining drone
+
+![ice-in-game-mining-yield](HarvesterDroneMaxBoost.jpg)
+
+This value is calculated as followed
+```perl
+my $Excavator_Ice_Harvesting_Drone_Duration = 310;
+my $Ice_Harvesting_Drone_Operation_Skill = 5;
+my $Ice_Harvesting_Drone_Specialication_Skill = 5;
+my $Capital_Industrial_Ships_Skill = 5;
+
+my $drone_cycle_duration =$Excavator_Ice_Harvesting_Drone_Duration
+	* (1 - 0.05 * $Ice_Harvesting_Drone_Operation_Skill)
+	* (1 - 0.02 * $Ice_Harvesting_Drone_Specialication_Skill)
+	* (1 - 0.10 * $Capital_Industrial_Ships_Skill)
+	* (1 - 0.80) # Industrial Core II Bonus
+	* (1 - 0.10) # Medium Drone Mining Augmentor I
+	* (1 - 0.15) # Medium Drone Mining Augmentor II
+	* (1 - 0.15) # Medium Drone Mining Augmentor II
+	;
+
+printf("%3.2f", $drone_cycle_duration ) # prints 13.61
+```
+
+|Ship|Ice Harvesting Drone I|Ice Harvesting Drone II|Augmented Ice Harvesting Drone|Excavator Ice Harvesting Drone|
+|:-|:-|:-|:-|:-|
+|     Venture|     N/A|     N/A|     N/A|     N/A|
+|   Endurance|     N/A|     N/A|     N/A|     N/A|
+|    Prospect|     N/A|     N/A|     N/A|     N/A|
+|    Procurer|  189.34|  172.12|  160.65|     N/A|
+|   Retriever|     N/A|     N/A|     N/A|     N/A|
+|     Covetor|  222.75|  202.50|  189.00|     N/A|
+|       Skiff|  189.34|  172.12|  160.65|     N/A|
+|    Mackinaw|  189.34|  172.12|  160.65|     N/A|
+|        Hulk|  189.34|  172.12|  160.65|     N/A|
+|    Porpoise|   72.42|   65.84|   61.45|     N/A|
+|        Orca|   54.32|   49.38|   46.09|     N/A|
+|     Rorqual|   72.42|   65.84|   61.45|   68.03|
+|Rorqual ICT1|   18.11|   16.46|   15.36|   17.01|
+|Rorqual ICT2|   14.48|   13.17|   12.29|   13.61|
+
+
+All numbers in m3/s per ship (yield multiplied with number of drones)
+
+|Ship|Ice Harvesting Drone I|Ice Harvesting Drone II|Augmented Ice Harvesting Drone|Excavator Ice Harvesting Drone|
+|:-|:-|:-|:-|:-|
+|     Venture|     N/A|     N/A|     N/A|     N/A|
+|   Endurance|     N/A|     N/A|     N/A|     N/A|
+|    Prospect|     N/A|     N/A|     N/A|     N/A|
+|    Procurer|    5.28|    5.81|    6.22|     N/A|
+|   Retriever|     N/A|     N/A|     N/A|     N/A|
+|     Covetor|    4.49|    4.94|    5.29|     N/A|
+|       Skiff|   10.56|   11.62|   12.45|     N/A|
+|    Mackinaw|    5.28|    5.81|    6.22|     N/A|
+|        Hulk|    5.28|    5.81|    6.22|     N/A|
+|    Porpoise|   13.81|   15.19|   16.27|     N/A|
+|        Orca|   18.41|   20.25|   21.70|     N/A|
+|     Rorqual|   27.62|   30.38|   32.55|   73.49|
+|Rorqual ICT1|  110.46|  121.51|  130.19|  293.98|
+|Rorqual ICT2|  138.08|  151.89|  162.74|  367.47|
+
 # Gas Mining Yield
 *To be done*
+
+## Code
+The code to generate these tables is [here](EveOnlineMiningYield.pl)
 
 # COPYRIGHT NOTICE
 EVE Online and the EVE logo are the registered trademarks of CCP hf. All rights are reserved worldwide. All other trademarks are the property of their respective owners. EVE Online, the EVE logo, EVE and all associated logos and designs are the intellectual property of CCP hf. All artwork, screenshots, characters, vehicles, storylines, world facts or other recognizable features of the intellectual property relating to these trademarks are likewise the intellectual property of CCP hf. CCP hf. has granted permission to EveOnlineMiningYield to use EVE Online and all associated logos and designs for promotional and information purposes on its website but does not endorse, and is not in any way affiliated with, EveOnlineMiningYield. CCP is in no way responsible for the content on or functioning of this website, nor can it be liable for any damage arising from the use of this website.
