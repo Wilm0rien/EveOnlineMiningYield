@@ -154,7 +154,7 @@ Some ships allow fitting Drone Mining Augmentor Rigs. The following table these 
 |Mackinaw, Skiff, Hulk|5|2 x T2|
 |Porpoise, Orca, Rorqual|5|2 x T2 + 1x T1|
 
-The following table shows the yield in m3/s per ship but *does not consider the yield loss caused by drone travel time*. The last two rows shows if a rorqual as the Industrial Core I (ICT1) or Industrial Core II (ICT2) being active.
+The following table shows the yield in m3/s per ship but *does not consider the yield loss caused by drone travel time*. 
 
 |Ship|Mining Drone I|Mining Drone II|Augmented Mining Drone|Harvester Mining Drone|Excavator Mining Drone|
 |:-|:-|:-|:-|:-|:-|
@@ -173,14 +173,15 @@ The following table shows the yield in m3/s per ship but *does not consider the 
 |Rorqual ICT1|   42.62|   61.88|   69.38|   71.60|  150.02|
 |Rorqual ICT2|   51.14|   74.26|   83.26|   85.92|  180.03|
 
+(ICT1 + ICT2 indicates if a rorqual as the Industrial Core I or Industrial Core II being active.)
 
 # Ice Mining Yield
 
 Yield values for Ice which can be found [in ice belts](https://imperium.news/eve-mining/what-to-mine/#ice_mining)
 
-## Ice Mining Ship Yields
+## Ship Yields
 
-Max yield for Ice shown in screenshot below
+Max yield for Ice is 45.8m3/s as shown in screenshot below
 
 ![ice-in-game-mining-yield](HulkMaxBoostIce.jpg)
 
@@ -253,7 +254,7 @@ printf("%3.2f", 1000 / $Ice_Harvester_Cycle_Time ) # prints "45.84"
 
 ## Ice Mining Drone Yields
 
-The cycle time of a drone ice harvester is listed in the info windows of each harvester drone. 
+The minimum cycle time of an Ice Harvesting Drone is *13.61s* as shown in the screenshot below:
 
 ![ice-in-game-mining-yield](HarvesterDroneMaxBoost.jpg)
 
@@ -277,10 +278,10 @@ my $drone_cycle_duration =$Excavator_Ice_Harvesting_Drone_Duration
 printf("%3.2f", $drone_cycle_duration ) # prints 13.61
 ```
 
-Note2: the Mining Drone I and Harvester Mining Drone do not get a bonus from the Mining Drone Specialization Skill
+Note that the Mining Drone I and Harvester Mining Drone do not get a bonus from the Mining Drone Specialization Skill
 
-The cycle time varies depending of the number of Drone Mining Augmentor Rigs fitted to the ship. Some ships (Venture, Prospect, Endurance, Retriever) cannot use the harvester mining drone becacause there is not enough room in the drone bay.
-Further most ships can only store one harvester drone in the drone bay. Only 1 harvester drone can be launched because of the bandwidth needed per drone. Only the rorqual may launch more than one drone. 
+The cycle time varies depending on  the number of Drone Mining Augmentor Rigs fitted to the ship. Some ships (Venture, Prospect, Endurance, Retriever) cannot use the harvester mining drone becacause there is not enough room in the drone bay.
+Except for the rorqual only 1 harvester drone can be launched because of the bandwidth needed per drone.
 
 |Ship|Number of Drones|Drone Rigs|
 |:-|:-|:-|
@@ -292,23 +293,23 @@ Further most ships can only store one harvester drone in the drone bay. Only 1 h
 |Procurer|1|2 x T2 + 1 x T1|
 |Procurer, Skiff, Mackinaw, Hulk|1|1 x T2|
 |Porpoise, Orca, Rorqual|1|2 x T2 + 1x T1|
-|Rorqual|2 x T2 drones or 5x excavator|2 x T2 + 1x T1|
+|Rorqual|5|2 x T2 + 1x T1|
 
-The following tables shows the listed cycle time for a drone depending on which ship is used with the rigs listed above. 
+The following tables shows the cycle time for a drone depending on which ship is used with the rigs listed above. 
 
 |Ship|Ice Harvesting Drone I|Ice Harvesting Drone II|Augmented Ice Harvesting Drone|Excavator Ice Harvesting Drone|
 |:-|:-|:-|:-|:-|
-|     Venture|     N/A|     N/A|     N/A|     N/A|
-|   Endurance|     N/A|     N/A|     N/A|     N/A|
-|    Prospect|     N/A|     N/A|     N/A|     N/A|
-|    Procurer|  189.34|  172.12|  160.65|     N/A|
-|   Retriever|     N/A|     N/A|     N/A|     N/A|
-|     Covetor|  222.75|  202.50|  189.00|     N/A|
-|       Skiff|  189.34|  172.12|  160.65|     N/A|
-|    Mackinaw|  189.34|  172.12|  160.65|     N/A|
-|        Hulk|  189.34|  172.12|  160.65|     N/A|
-|    Porpoise|   72.42|   65.84|   61.45|     N/A|
-|        Orca|   54.32|   49.38|   46.09|     N/A|
+|     Venture|        |        |        |        |
+|   Endurance|        |        |        |        |
+|    Prospect|        |        |        |        |
+|    Procurer|  189.34|  172.12|  160.65|        |
+|   Retriever|        |        |        |        |
+|     Covetor|  222.75|  202.50|  189.00|        |
+|       Skiff|  189.34|  172.12|  160.65|        |
+|    Mackinaw|  189.34|  172.12|  160.65|        |
+|        Hulk|  189.34|  172.12|  160.65|        |
+|    Porpoise|   72.42|   65.84|   61.45|        |
+|        Orca|   54.32|   49.38|   46.09|        |
 |     Rorqual|   72.42|   65.84|   61.45|   68.03|
 |Rorqual ICT1|   18.11|   16.46|   15.36|   17.01|
 |Rorqual ICT2|   14.48|   13.17|   12.29|   13.61|
@@ -318,17 +319,17 @@ The following table shows the yield in m3/s per ship but *does not consider the 
 
 |Ship|Ice Harvesting Drone I|Ice Harvesting Drone II|Augmented Ice Harvesting Drone|Excavator Ice Harvesting Drone|
 |:-|:-|:-|:-|:-|
-|     Venture|     N/A|     N/A|     N/A|     N/A|
-|   Endurance|     N/A|     N/A|     N/A|     N/A|
-|    Prospect|     N/A|     N/A|     N/A|     N/A|
-|    Procurer|    5.28|    5.81|    6.22|     N/A|
-|   Retriever|     N/A|     N/A|     N/A|     N/A|
-|     Covetor|    4.49|    4.94|    5.29|     N/A|
-|       Skiff|   10.56|   11.62|   12.45|     N/A|
-|    Mackinaw|    5.28|    5.81|    6.22|     N/A|
-|        Hulk|    5.28|    5.81|    6.22|     N/A|
-|    Porpoise|   13.81|   15.19|   16.27|     N/A|
-|        Orca|   18.41|   20.25|   21.70|     N/A|
+|     Venture|        |        |        |        |
+|   Endurance|        |        |        |        |
+|    Prospect|        |        |        |        |
+|    Procurer|    5.28|    5.81|    6.22|        |
+|   Retriever|        |        |        |        |
+|     Covetor|    4.49|    4.94|    5.29|        |
+|       Skiff|   10.56|   11.62|   12.45|        |
+|    Mackinaw|    5.28|    5.81|    6.22|        |
+|        Hulk|    5.28|    5.81|    6.22|        |
+|    Porpoise|   13.81|   15.19|   16.27|        |
+|        Orca|   18.41|   20.25|   21.70|        |
 |     Rorqual|   27.62|   30.38|   32.55|   73.49|
 |Rorqual ICT1|  110.46|  121.51|  130.19|  293.98|
 |Rorqual ICT2|  138.08|  151.89|  162.74|  367.47|
