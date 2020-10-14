@@ -130,17 +130,17 @@ The following tables shows the yield in m3 *per 60s drone cycle*
 
 |Ship|Mining Drone I|Mining Drone II|Augmented Mining Drone|Harvester Mining Drone|Excavator Mining Drone|
 |:-|:-|:-|:-|:-|:-|
-|     Venture|   68.19|   99.01|  111.02|  114.56|     N/A|
-|   Endurance|   61.99|   90.01|  100.92|  104.15|     N/A|
-|    Prospect|     N/A|     N/A|     N/A|     N/A|     N/A|
-|    Procurer|   68.19|   99.01|  111.02|  114.56|     N/A|
-|   Retriever|   59.30|   86.10|   96.54|   99.62|     N/A|
-|     Covetor|   59.30|   86.10|   96.54|   99.62|     N/A|
-|       Skiff|   61.99|   90.01|  100.92|  104.15|     N/A|
-|    Mackinaw|   61.99|   90.01|  100.92|  104.15|     N/A|
-|        Hulk|   61.99|   90.01|  100.92|  104.15|     N/A|
-|    Porpoise|  153.43|  222.78|  249.79|  257.76|     N/A|
-|        Orca|  204.57|  297.04|  333.05|  343.68|     N/A|
+|     Venture|   68.19|   99.01|  111.02|  114.56|        |
+|   Endurance|   61.99|   90.01|  100.92|  104.15|        |
+|    Prospect|        |        |        |        |        |
+|    Procurer|   68.19|   99.01|  111.02|  114.56|        |
+|   Retriever|   59.30|   86.10|   96.54|   99.62|        |
+|     Covetor|   59.30|   86.10|   96.54|   99.62|        |
+|       Skiff|   61.99|   90.01|  100.92|  104.15|        |
+|    Mackinaw|   61.99|   90.01|  100.92|  104.15|        |
+|        Hulk|   61.99|   90.01|  100.92|  104.15|        |
+|    Porpoise|  153.43|  222.78|  249.79|  257.76|        |
+|        Orca|  204.57|  297.04|  333.05|  343.68|        |
 |     Rorqual|  102.29|  148.52|  166.52|  171.84|  360.05|
 |Rorqual ICT1|  511.44|  742.60|  832.62|  859.21| 1800.25|
 |Rorqual ICT2|  613.72|  891.13|  999.14| 1031.05| 2160.30|
@@ -151,7 +151,7 @@ Some ships allow fitting Drone Mining Augmentor Rigs. The following table these 
 |:-|:-|:-|
 |Venture|2|2 x T2 + 1 x T1|
 |Endurance|5 (only 3 Harvester)|2 x T2 + 1 x T1|
-|Prospect|no drone bay|N/A|
+|Prospect|no drone bay|   |
 |Covetor + Retriever|5|1 x T2 + 1 x T1|
 |Procurer|5|2 x T2 + 1 x T1|
 |Mackinaw, Skiff, Hulk|5|2 x T2|
@@ -161,17 +161,17 @@ The following table shows the yield in m3/s per ship but *does not consider the 
 
 |Ship|Mining Drone I|Mining Drone II|Augmented Mining Drone|Harvester Mining Drone|Excavator Mining Drone|
 |:-|:-|:-|:-|:-|:-|
-|     Venture|    2.27|    3.30|    3.70|    3.82|     N/A|
-|   Endurance|    5.17|    7.50|    8.41|    5.21|     N/A|
-|    Prospect|     N/A|     N/A|     N/A|     N/A|     N/A|
-|    Procurer|    5.68|    8.25|    9.25|    9.55|     N/A|
-|   Retriever|    4.94|    7.17|    8.04|    8.30|     N/A|
-|     Covetor|    4.94|    7.17|    8.04|    8.30|     N/A|
-|       Skiff|    5.17|    7.50|    8.41|    8.68|     N/A|
-|    Mackinaw|    5.17|    7.50|    8.41|    8.68|     N/A|
-|        Hulk|    5.17|    7.50|    8.41|    8.68|     N/A|
-|    Porpoise|   12.79|   18.57|   20.82|   21.48|     N/A|
-|        Orca|   17.05|   24.75|   27.75|   28.64|     N/A|
+|     Venture|    2.27|    3.30|    3.70|    3.82|        |
+|   Endurance|    5.17|    7.50|    8.41|    5.21|        |
+|    Prospect|        |        |        |        |        |
+|    Procurer|    5.68|    8.25|    9.25|    9.55|        |
+|   Retriever|    4.94|    7.17|    8.04|    8.30|        |
+|     Covetor|    4.94|    7.17|    8.04|    8.30|        |
+|       Skiff|    5.17|    7.50|    8.41|    8.68|        |
+|    Mackinaw|    5.17|    7.50|    8.41|    8.68|        |
+|        Hulk|    5.17|    7.50|    8.41|    8.68|        |
+|    Porpoise|   12.79|   18.57|   20.82|   21.48|        |
+|        Orca|   17.05|   24.75|   27.75|   28.64|        |
 |     Rorqual|    8.52|   12.38|   13.88|   14.32|   30.00|
 |Rorqual ICT1|   42.62|   61.88|   69.38|   71.60|  150.02|
 |Rorqual ICT2|   51.14|   74.26|   83.26|   85.92|  180.03|
@@ -192,7 +192,7 @@ The following table shows the yield in m3/s per *ice harvester* (ingame values)
 
 |Ship|No Boost|Porpise Boot|Orca Boost|Rorqual Boost|Rorqual ICT1 Boost|Rorqual ICT2 Boost|
 |:-|:-|:-|:-|:-|:-|:-|
-|     Venture|     N/A|     N/A|     N/A|     N/A|     N/A|     N/A|
+|     Venture|        |        |        |        |        |        |
 |   Endurance|   20.07|   32.72|   33.69|   35.80|   46.81|   49.88|
 |    Prospect|    6.20|   10.11|   10.41|   11.06|   14.47|   15.41|
 |    Procurer|   10.70|   17.45|   17.96|   19.09|   24.96|   26.59|
@@ -206,7 +206,7 @@ The following table shows the Yield in m3/s per *ship* (multiple mining lasers)
 
 |Ship|No Boost|Porpise Boot|Orca Boost|Rorqual Boost|Rorqual ICT1 Boost|Rorqual ICT2 Boost|
 |:-|:-|:-|:-|:-|:-|:-|
-|     Venture|     N/A|     N/A|     N/A|     N/A|     N/A|     N/A|
+|     Venture|        |        |        |        |        |        |
 |   Endurance|   20.07|   32.72|   33.69|   35.80|   46.81|   49.88|
 |    Prospect|   12.40|   20.23|   20.82|   22.13|   28.93|   30.83|
 |    Procurer|   21.40|   34.89|   35.92|   38.18|   49.92|   53.19|
@@ -325,7 +325,7 @@ The following table shows the yield in m3/s per ship but *does not consider the 
 |     Venture|        |        |        |        |
 |   Endurance|        |        |        |        |
 |    Prospect|        |        |        |        |
-|    Procurer|    5.28|    5.81|    6.22|        |
+|    Procurer|        |        |        |        |
 |   Retriever|        |        |        |        |
 |     Covetor|    4.49|    4.94|    5.29|        |
 |       Skiff|   10.56|   11.62|   12.45|        |
