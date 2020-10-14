@@ -211,12 +211,12 @@ sub get_ore_mining_amount
 	# Minig Crystal II Attribute
 	my $Asteroid_Specialization_Yield_Modifier =  1.75;
 
-	# Miner II Attributes
-	my $MinerII_cycle      = 60;
-	my $MinerII_amount     = 60;
+	# Modulated Deep Core Miner II Attributes
+	my $ModulatedDeepCoreMinerII_cycle  = 180;
+	my $ModulatedDeepCoreMinerII_amount = 120;
 
 
-	my $mining_upgrades_x1 = 0.09;
+	my $mining_upgrades_x1 = (1+0.09);
 
 	my $boost_factor = get_boost_factor($boost_type);
 
@@ -227,15 +227,18 @@ sub get_ore_mining_amount
 		my $Venture_Role_Bonus = 1.00;
 
 		my $venture_base_yield =  
-			$MinerII_amount 
+			$ModulatedDeepCoreMinerII_amount 
+		  * $Asteroid_Specialization_Yield_Modifier
 		  * (1+0.05*$Mining_Frigate_Skill)       # regular skill bonus
 		  * (1+0.05*$Mining_Skill)       # regular skill bonus
 		  * (1+0.05*$Astrogeology_Skill) # regular skill bonus
 		  * (1+$Venture_Role_Bonus)      # role bonus
 		  * $Highwall_Mining_MX1005_Implant
-		  * (1+$mining_upgrades_x1)
-				;
-		my $venture_base_time = ($MinerII_cycle * $boost_factor);
+		  * $mining_upgrades_x1
+		;
+
+		my $venture_base_time = ($ModulatedDeepCoreMinerII_cycle * $boost_factor);
+
 
 		if ($venture_base_time > 0 )
 		{
@@ -247,16 +250,19 @@ sub get_ore_mining_amount
 		my $Endurance_Role_Bonus = 3.00;
 
 		my $endurance_base_yield =  
-			$MinerII_amount 
+			$ModulatedDeepCoreMinerII_amount
+		  * $Asteroid_Specialization_Yield_Modifier
 		  * (1+0.05*$Mining_Frigate_Skill)       # regular skill bonus
 		  * (1+0.05*$Mining_Skill)       # regular skill bonus
 		  * (1+0.05*$Astrogeology_Skill) # regular skill bonus
 		  * (1+$Endurance_Role_Bonus)      # role bonus
-		  * $mining_upgrades_x3
+		  * $mining_upgrades_x1
+		  * $mining_upgrades_x1
+		  * $mining_upgrades_x1
 		  * $Highwall_Mining_MX1005_Implant
 		;
 
-		my $endurance_base_time = ($MinerII_cycle * $boost_factor);
+		my $endurance_base_time = ($ModulatedDeepCoreMinerII_cycle * $boost_factor);
 
 		if ($endurance_base_time > 0 )
 		{
@@ -270,17 +276,22 @@ sub get_ore_mining_amount
 		my $Prospect_Role_Bonus = 1.00;
 
 		my $prospect_base_yield =  
-			$MinerII_amount 
+			$ModulatedDeepCoreMinerII_amount 
+		  * $Asteroid_Specialization_Yield_Modifier
 		  * (1+0.05*$Mining_Frigate_Skill)       # regular skill bonus
 		  * (1+0.05*$Expedition_Frigates_Skill)       # regular skill bonus
 		  * (1+0.05*$Mining_Skill)       # regular skill bonus
 		  * (1+0.05*$Astrogeology_Skill) # regular skill bonus
 		  * (1+$Prospect_Role_Bonus)      # role bonus
 		  * $Highwall_Mining_MX1005_Implant
-		  * $mining_upgrades_x4
+		  * $mining_upgrades_x1
+		  * $mining_upgrades_x1
+		  * $mining_upgrades_x1
+		  * $mining_upgrades_x1
 		;
 
-		my $prospect_base_time = ($MinerII_cycle * $boost_factor);
+		my $prospect_base_time = ($ModulatedDeepCoreMinerII_cycle * $boost_factor);
+
 
 		if ($prospect_base_time > 0 )
 		{
@@ -814,7 +825,6 @@ sub get_ice_drone_amount
 		$number_of_drones = 1;
 	}
 	if  ( ($ship_type eq "Hulk")||
-		  ($ship_type eq "Procurer")||
 		($ship_type eq "Mackinaw") )
 	{
 		$drone_cycle_duration =$drone_cycle_duration_base

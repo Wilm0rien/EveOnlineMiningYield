@@ -16,9 +16,9 @@ The following table shows the yield in m3/s per *mining laser* (ingame values)
 
 |Ship|No Boost|Porpise Boot|Orca Boost|Rorqual Boost|Rorqual ICT1 Boost|Rorqual ICT2 Boost|
 |:-|:-|:-|:-|:-|:-|:-|
-|     Venture|    4.47|    7.29|    7.50|    7.98|   10.43|   11.11|
-|   Endurance|   10.62|   17.32|   17.83|   18.95|   24.78|   26.40|
-|    Prospect|    7.24|   11.80|   12.15|   12.91|   16.88|   17.99|
+|     Venture|    5.22|    8.50|    8.76|    9.30|   12.17|   12.96|
+|   Endurance|   12.39|   20.21|   20.81|   22.11|   28.91|   30.80|
+|    Prospect|    8.44|   13.77|   14.17|   15.06|   19.69|   20.99|
 |    Procurer|    9.48|   15.46|   15.92|   16.92|   22.12|   23.57|
 |   Retriever|   10.33|   16.84|   17.34|   18.42|   24.09|   25.67|
 |     Covetor|   13.77|   22.45|   23.12|   24.57|   32.12|   34.23|
@@ -30,9 +30,9 @@ The following table shows the Yield in m3/s per *ship* (multiple mining lasers)
 
 |Ship|No Boost|Porpise Boot|Orca Boost|Rorqual Boost|Rorqual ICT1 Boost|Rorqual ICT2 Boost|
 |:-|:-|:-|:-|:-|:-|:-|
-|     Venture|    8.94|   14.58|   15.01|   15.95|   20.86|   22.22|
-|   Endurance|   10.62|   17.32|   17.83|   18.95|   24.78|   26.40|
-|    Prospect|   14.47|   23.60|   24.30|   25.82|   33.76|   35.98|
+|     Venture|   10.43|   17.01|   17.51|   18.61|   24.33|   25.93|
+|   Endurance|   12.39|   20.21|   20.81|   22.11|   28.91|   30.80|
+|    Prospect|   16.89|   27.53|   28.35|   30.13|   39.39|   41.97|
 |    Procurer|   18.97|   30.92|   31.84|   33.83|   44.24|   47.14|
 |   Retriever|   20.66|   33.68|   34.67|   36.85|   48.18|   51.34|
 |     Covetor|   27.54|   44.91|   46.23|   49.13|   64.24|   68.45|
@@ -92,6 +92,9 @@ The formular behind this table is calculated as followed:
 
 	printf("%3.2f", $mining_yield_per_second); # prints 40.27
 ```
+
+Thanks to a hint from [Lesican](https://www.reddit.com/r/Eve/comments/hhimzp/added_numbers_for_ice_mining_yield_and_updated/fwgjt6r?utm_source=share&utm_medium=web2x&context=3) the mining frigates are all fitted with a Modulated Deep Core Miner II and a Mining Crystal II rather than a Miner II in order to achieve max yield on these ships.
+
 ## Drone Yields
 
 The Mining amount of ore collected via drones is listed in the attributes section of the info window for each drone.
@@ -302,7 +305,7 @@ The following tables shows the cycle time for a drone depending on which ship is
 |     Venture|        |        |        |        |
 |   Endurance|        |        |        |        |
 |    Prospect|        |        |        |        |
-|    Procurer|  189.34|  172.12|  160.65|        |
+|    Procurer|        |        |        |        |
 |   Retriever|        |        |        |        |
 |     Covetor|  222.75|  202.50|  189.00|        |
 |       Skiff|  189.34|  172.12|  160.65|        |
