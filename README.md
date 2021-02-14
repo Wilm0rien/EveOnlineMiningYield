@@ -14,7 +14,7 @@ The game displays the outcome of mining yield in the tooltip of the mining laser
 
 The following table shows the yield in m3/s per *mining laser* (ingame values)
 
-|Ship|No Boost|Porpise Boot|Orca Boost|Rorqual Boost|Rorqual ICT1 Boost|Rorqual ICT2 Boost|
+|Ship|No Boost|Porpise Boost|Orca Boost|Rorqual Boost|Rorqual ICT1 Boost|Rorqual ICT2 Boost|
 |:-|:-|:-|:-|:-|:-|:-|
 |     Venture|    5.22|    8.50|    8.76|    9.30|   12.17|   12.96|
 |   Endurance|   12.39|   20.21|   20.81|   22.11|   28.91|   30.80|
@@ -28,7 +28,7 @@ The following table shows the yield in m3/s per *mining laser* (ingame values)
 
 The following table shows the Yield in m3/s per *ship* (multiple mining lasers)
 
-|Ship|No Boost|Porpise Boot|Orca Boost|Rorqual Boost|Rorqual ICT1 Boost|Rorqual ICT2 Boost|
+|Ship|No Boost|Porpise Boost|Orca Boost|Rorqual Boost|Rorqual ICT1 Boost|Rorqual ICT2 Boost|
 |:-|:-|:-|:-|:-|:-|:-|
 |     Venture|   10.43|   17.01|   17.51|   18.61|   24.33|   25.93|
 |   Endurance|   12.39|   20.21|   20.81|   22.11|   28.91|   30.80|
@@ -190,7 +190,7 @@ Max yield for Ice is 45.8m3/s as shown in screenshot below
 
 The following table shows the yield in m3/s per *ice harvester* (ingame values)
 
-|Ship|No Boost|Porpise Boot|Orca Boost|Rorqual Boost|Rorqual ICT1 Boost|Rorqual ICT2 Boost|
+|Ship|No Boost|Porpise Boost|Orca Boost|Rorqual Boost|Rorqual ICT1 Boost|Rorqual ICT2 Boost|
 |:-|:-|:-|:-|:-|:-|:-|
 |     Venture|        |        |        |        |        |        |
 |   Endurance|   20.07|   32.72|   33.69|   35.80|   46.81|   49.88|
@@ -204,7 +204,7 @@ The following table shows the yield in m3/s per *ice harvester* (ingame values)
 
 The following table shows the Yield in m3/s per *ship* (multiple mining lasers)
 
-|Ship|No Boost|Porpise Boot|Orca Boost|Rorqual Boost|Rorqual ICT1 Boost|Rorqual ICT2 Boost|
+|Ship|No Boost|Porpise Boost|Orca Boost|Rorqual Boost|Rorqual ICT1 Boost|Rorqual ICT2 Boost|
 |:-|:-|:-|:-|:-|:-|:-|
 |     Venture|        |        |        |        |        |        |
 |   Endurance|   20.07|   32.72|   33.69|   35.80|   46.81|   49.88|
