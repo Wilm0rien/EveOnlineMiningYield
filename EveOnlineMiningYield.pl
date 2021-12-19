@@ -478,7 +478,7 @@ sub get_ice_mining_amount
 
 	# factors
 	my $Ice_Harvester_II_Base_Duration = 200;
-	my $Ice_Mining_Laser_II_Base_Duration = 330;
+	my $Ice_Mining_Laser_II_Base_Duration = 300;
 	my $Ice_Harvester_Upgrade_II       = 0.09;
 	my $Yeti_Harvesting_IH_1005_Implant = 0.05;
 	
@@ -502,7 +502,7 @@ sub get_ice_mining_amount
 									* (1 - $Ice_Harvester_Upgrade_II ) 
 									* (1 - $Yeti_Harvesting_IH_1005_Implant) 
 									* $boost_factor;
-
+		#printf("\n%3.2f\n", $Ice_Harvester_Cycle_Time);
 		$turret_factor = 1; # only one turrent allowed on the endurance
 	}
 	elsif ($ship_type eq "Prospect")
@@ -527,12 +527,14 @@ sub get_ice_mining_amount
 									* (1 - 0.12 ) # Medium Ice Harvesting Accelerator I
 									* (1 - $Ice_Harvester_Upgrade_II ) 
 									* (1 - $Ice_Harvester_Upgrade_II) 
+									* (1 - $Ice_Harvester_Upgrade_II) 
 									* (1 - $Yeti_Harvesting_IH_1005_Implant) 
 									* $boost_factor;
 	}
 	elsif  ($ship_type eq "Retriever")
 	{
 		$Ice_Harvester_Cycle_Time = $Ice_Harvester_II_Base_Duration
+									* (1 - 0.125) # role bonus
 									* (1 - 0.02 * $Mining_Barge_Skill )
 									* (1 - 0.05 * $Ice_Harvesting_Skill )
 									* (1 - 0.12 ) # Medium Ice Harvesting Accelerator I
@@ -545,8 +547,8 @@ sub get_ice_mining_amount
 	elsif  ($ship_type eq "Covetor")
 	{
 		$Ice_Harvester_Cycle_Time = $Ice_Harvester_II_Base_Duration
-									* (1 - 0.25) # role bonus
-									* (1 - 0.02 * $Mining_Barge_Skill )
+									* (1 - 0.30) # role bonus
+									* (1 - 0.03 * $Mining_Barge_Skill )
 									* (1 - 0.05 * $Ice_Harvesting_Skill )
 									* (1 - 0.12 ) # Medium Ice Harvesting Accelerator I
 									* (1 - $Ice_Harvester_Upgrade_II ) 
@@ -558,8 +560,7 @@ sub get_ice_mining_amount
 	elsif  ($ship_type eq "Skiff")
 	{
 		$Ice_Harvester_Cycle_Time = $Ice_Harvester_II_Base_Duration
-									* (1 - 0.02 * $Mining_Barge_Skill )
-									* (1 - 0.02 * $Exhumer_Skill )
+									* (1 - 0.04 * $Mining_Barge_Skill )
 									* (1 - 0.05 * $Ice_Harvesting_Skill )
 									* (1 - 0.12 ) # Medium Ice Harvesting Accelerator I
 									* (1 - $Ice_Harvester_Upgrade_II ) 
@@ -571,8 +572,8 @@ sub get_ice_mining_amount
 	elsif  ($ship_type eq "Mackinaw")
 	{
 		$Ice_Harvester_Cycle_Time = $Ice_Harvester_II_Base_Duration
-									* (1 - 0.02 * $Mining_Barge_Skill )
-									* (1 - 0.02 * $Exhumer_Skill )
+									* (1 - 0.125) # role bonus
+									* (1 - 0.04 * $Mining_Barge_Skill )
 									* (1 - 0.05 * $Ice_Harvesting_Skill )
 									* (1 - 0.12 ) # Medium Ice Harvesting Accelerator I
 									* (1 - $Ice_Harvester_Upgrade_II ) 
@@ -580,13 +581,14 @@ sub get_ice_mining_amount
 									* (1 - $Ice_Harvester_Upgrade_II) 
 									* (1 - $Yeti_Harvesting_IH_1005_Implant) 
 									* $boost_factor;
+
 	}
 	elsif  ($ship_type eq "Hulk")
 	{
 		$Ice_Harvester_Cycle_Time = $Ice_Harvester_II_Base_Duration
-									* (1 - 0.25) # role bonus
-									* (1 - 0.02 * $Mining_Barge_Skill )
-									* (1 - 0.03 * $Exhumer_Skill )
+									* (1 - 0.30) # role bonus
+									* (1 - 0.03 * $Mining_Barge_Skill )
+									* (1 - 0.04 * $Exhumer_Skill )
 									* (1 - 0.05 * $Ice_Harvesting_Skill )
 									* (1 - 0.12 ) # Medium Ice Harvesting Accelerator I
 									* (1 - $Ice_Harvester_Upgrade_II ) 
