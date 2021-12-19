@@ -8,24 +8,24 @@ my @ice_drone_list = ("Ice Harvesting Drone I", "Ice Harvesting Drone II", "Augm
 my @boost_list = ("no Boost", "Porpise Boot", "Orca Boost", "Orca ICT1 Boost", "Orca ICT2 Boost", "Rorqual Boost", "Rorqual ICT1 Boost", "Rorqual ICT2 Boost");
 
 # ORE
-#print "\nORE in_game_value\n";
-#print_ship_table("ORE", "in_game_value");
-#print "\nORE m3_per_second\n";
-#print_ship_table("ORE", "m3_per_second");
-#print "\nORE DRONE in_game_value\n";
-#print_drone_table("ORE", "in_game_value");
-#print "\nORE DRONE m3_per_second\n";
-#print_drone_table("ORE", "m3_per_second");
+print "\nORE in_game_value\n";
+print_ship_table("ORE", "in_game_value");
+print "\nORE m3_per_second\n";
+print_ship_table("ORE", "m3_per_second");
+print "\nORE DRONE in_game_value\n";
+print_drone_table("ORE", "in_game_value");
+print "\nORE DRONE m3_per_second\n";
+print_drone_table("ORE", "m3_per_second");
 #
-## ICE
+# ICE
 print "\nICE in_game_value\n";
-#print_ship_table("ICE", "in_game_value");
-#print "\nICE m3_per_second\n";
-#print_ship_table("ICE", "m3_per_second");
-#print "\nICE DRONE in_game_value\n";
-#print_drone_table("ICE", "in_game_value");
-#print "\nICE DRONE m3_per_second\n";
-#print_drone_table("ICE", "m3_per_second");
+print_ship_table("ICE", "in_game_value");
+print "\nICE m3_per_second\n";
+print_ship_table("ICE", "m3_per_second");
+print "\nICE DRONE in_game_value\n";
+print_drone_table("ICE", "in_game_value");
+print "\nICE DRONE m3_per_second\n";
+print_drone_table("ICE", "m3_per_second");
 ##
 
 sub print_ship_table
@@ -859,7 +859,7 @@ sub get_ice_drone_amount
 	my $drone_cycle_duration_base = 0;
 	if ($drone_type eq "Ice Harvesting Drone I")
 	{
-		$drone_cycle_duration_base = 330;
+		$drone_cycle_duration_base = 360;
 	}
 	elsif ($drone_type eq "Ice Harvesting Drone II")
 	{
@@ -886,8 +886,9 @@ sub get_ice_drone_amount
 	my $Industrial_Command_Ships_Skill = 5;
 	my $Capital_Industrial_Ships_Skill = 5;
 
-	if  ( ($ship_type eq "Covetor") 
-
+	if  ( ($ship_type eq "Retriever") ||
+			($ship_type eq "Procurer") ||
+			($ship_type eq "Covetor")
 		  )
 	{
 		$drone_cycle_duration =$drone_cycle_duration_base
@@ -897,7 +898,8 @@ sub get_ice_drone_amount
 		$number_of_drones = 1;
 	}
 	if  ( ($ship_type eq "Hulk")||
-		($ship_type eq "Mackinaw") )
+		($ship_type eq "Mackinaw") ||
+		($ship_type eq "Skiff"))
 	{
 		$drone_cycle_duration =$drone_cycle_duration_base
 			* (1 - 0.05 * $Ice_Harvesting_Drone_Operation_Skill)
@@ -905,15 +907,6 @@ sub get_ice_drone_amount
 			* (1 - 0.15) # Medium Drone Mining Augmentor II
 			;
 		$number_of_drones = 1;
-	}
-	elsif ($ship_type eq "Skiff")
-	{
-		$drone_cycle_duration =$drone_cycle_duration_base
-			* (1 - 0.05 * $Ice_Harvesting_Drone_Operation_Skill)
-			* (1 - 0.02 * $Ice_Harvesting_Drone_Specialication_Skill)
-			* (1 - 0.15) # Medium Drone Mining Augmentor II
-			;
-		$number_of_drones = 2;
 	}
 	elsif ($ship_type eq "Porpoise")
 	{
@@ -932,8 +925,33 @@ sub get_ice_drone_amount
 		$drone_cycle_duration =$drone_cycle_duration_base
 			* (1 - 0.05 * $Ice_Harvesting_Drone_Operation_Skill)
 			* (1 - 0.02 * $Ice_Harvesting_Drone_Specialication_Skill)
-			* (1 - 0.10 * $Industrial_Command_Ships_Skill)
-			* (1 - 0.25) # Role Bonus
+			* (1 - 0.02 * $Industrial_Command_Ships_Skill)
+			* (1 - 0.10) # Medium Drone Mining Augmentor I
+			* (1 - 0.15) # Medium Drone Mining Augmentor II
+			* (1 - 0.15) # Medium Drone Mining Augmentor II
+			;
+		$number_of_drones = 1;
+	}
+	elsif ($ship_type eq "Orca ICT1 Boost")
+	{
+		$drone_cycle_duration =$drone_cycle_duration_base
+			* (1 - 0.05 * $Ice_Harvesting_Drone_Operation_Skill)
+			* (1 - 0.02 * $Ice_Harvesting_Drone_Specialication_Skill)
+			* (1 - 0.02 * $Industrial_Command_Ships_Skill)
+			* (1 - 0.25) # ICT1 Boost
+			* (1 - 0.10) # Medium Drone Mining Augmentor I
+			* (1 - 0.15) # Medium Drone Mining Augmentor II
+			* (1 - 0.15) # Medium Drone Mining Augmentor II
+			;
+		$number_of_drones = 1;
+	}
+	elsif ($ship_type eq "Orca ICT2 Boost")
+	{
+		$drone_cycle_duration =$drone_cycle_duration_base
+			* (1 - 0.05 * $Ice_Harvesting_Drone_Operation_Skill)
+			* (1 - 0.02 * $Ice_Harvesting_Drone_Specialication_Skill)
+			* (1 - 0.02 * $Industrial_Command_Ships_Skill)
+			* (1 - 0.50) # ICT2 Boost
 			* (1 - 0.10) # Medium Drone Mining Augmentor I
 			* (1 - 0.15) # Medium Drone Mining Augmentor II
 			* (1 - 0.15) # Medium Drone Mining Augmentor II
@@ -946,12 +964,11 @@ sub get_ice_drone_amount
 		$drone_cycle_duration =$drone_cycle_duration_base
 			* (1 - 0.05 * $Ice_Harvesting_Drone_Operation_Skill)
 			* (1 - 0.02 * $Ice_Harvesting_Drone_Specialication_Skill)
-			* (1 - 0.10 * $Capital_Industrial_Ships_Skill)
+			* (1 - 0.06 * $Capital_Industrial_Ships_Skill)
 			* (1 - 0.10) # Medium Drone Mining Augmentor I
 			* (1 - 0.15) # Medium Drone Mining Augmentor II
 			* (1 - 0.15) # Medium Drone Mining Augmentor II
 			;
-		
 		$number_of_drones = 2;
 		if ($drone_type eq "Excavator Ice Harvesting Drone"){
 			$number_of_drones = 5;
@@ -980,7 +997,7 @@ sub get_ice_drone_amount
 			* (1 - 0.05 * $Ice_Harvesting_Drone_Operation_Skill)
 			* (1 - 0.02 * $Ice_Harvesting_Drone_Specialication_Skill)
 			* (1 - 0.10 * $Capital_Industrial_Ships_Skill)
-			* (1 - 0.80)
+			* (1 - 0.85)
 			* (1 - 0.10) # Medium Drone Mining Augmentor I
 			* (1 - 0.15) # Medium Drone Mining Augmentor II
 			* (1 - 0.15) # Medium Drone Mining Augmentor II
