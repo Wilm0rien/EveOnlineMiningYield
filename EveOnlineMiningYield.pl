@@ -1,32 +1,32 @@
 use strict;
 
-my @ship_list = ("Venture","Endurance","Prospect", "Procurer", "Retriever", "Covetor", "Skiff", "Mackinaw", "Hulk", "Porpoise", "Orca", "Rorqual", "Rorqual ICT1", "Rorqual ICT2");
+my @ship_list = ("Venture","Endurance","Prospect", "Procurer", "Retriever", "Covetor", "Skiff", "Mackinaw", "Hulk", "Porpoise", "Orca", "Orca ICT1","Orca ICT2","Rorqual", "Rorqual ICT1", "Rorqual ICT2");
 
 my @ore_drone_list = ("Mining Drone I", "Mining Drone II", "Augmented Mining Drone", "Harvester Mining Drone", "Excavator Mining Drone");
 my @ice_drone_list = ("Ice Harvesting Drone I", "Ice Harvesting Drone II", "Augmented Ice Harvesting Drone", "Excavator Ice Harvesting Drone");
 
-my @boost_list = ("no Boost", "Porpise Boot", "Orca Boost", "Rorqual Boost", "Rorqual ICT1 Boost", "Rorqual ICT2 Boost");
+my @boost_list = ("no Boost", "Porpise Boot", "Orca Boost", "Orca ICT1 Boost", "Orca ICT2 Boost", "Rorqual Boost", "Rorqual ICT1 Boost", "Rorqual ICT2 Boost");
 
 # ORE
-print "\nORE in_game_value\n";
-print_ship_table("ORE", "in_game_value");
-print "\nORE m3_per_second\n";
-print_ship_table("ORE", "m3_per_second");
-print "\nORE DRONE in_game_value\n";
-print_drone_table("ORE", "in_game_value");
-print "\nORE DRONE m3_per_second\n";
-print_drone_table("ORE", "m3_per_second");
-
-# ICE
-print "\nICE in_game_value\n";
-print_ship_table("ICE", "in_game_value");
-print "\nICE m3_per_second\n";
-print_ship_table("ICE", "m3_per_second");
-print "\nICE DRONE in_game_value\n";
-print_drone_table("ICE", "in_game_value");
-print "\nICE DRONE m3_per_second\n";
-print_drone_table("ICE", "m3_per_second");
+#print "\nORE in_game_value\n";
+#print_ship_table("ORE", "in_game_value");
+#print "\nORE m3_per_second\n";
+#print_ship_table("ORE", "m3_per_second");
+#print "\nORE DRONE in_game_value\n";
+#print_drone_table("ORE", "in_game_value");
+#print "\nORE DRONE m3_per_second\n";
+#print_drone_table("ORE", "m3_per_second");
 #
+## ICE
+print "\nICE in_game_value\n";
+#print_ship_table("ICE", "in_game_value");
+#print "\nICE m3_per_second\n";
+#print_ship_table("ICE", "m3_per_second");
+#print "\nICE DRONE in_game_value\n";
+#print_drone_table("ICE", "in_game_value");
+#print "\nICE DRONE m3_per_second\n";
+#print_drone_table("ICE", "m3_per_second");
+##
 
 sub print_ship_table
 {
@@ -122,7 +122,7 @@ sub get_boost_factor
 	my $Mining_Foreman_Mindlink_bonus_1  = (1+0.25);
 	my $Tech_2_Command_Burst_Modules_1   = (1+0.25);
 	my $T1_Industrial_Core               = (1+0.30);
-	my $T2_Industrial_Core               = (1+0.36);
+	my $T2_Industrial_Core               = (1+0.40);
 	my $Mining_Laser_optimization_base_1 = 0.15;
 
 	# caluclate boost factors
@@ -145,7 +145,27 @@ sub get_boost_factor
 			* $Tech_2_Command_Burst_Modules_1
 			* (1+0.1 * $Mining_Director_Skill)
 			* $Mining_Foreman_Mindlink_bonus_1
-			* (1+0.03*$Industrial_Command_Ship_Skill) ;
+			* (1+0.01*$Industrial_Command_Ship_Skill) ;
+		$boost_factor = (1- $orca_boost);
+	}
+	elsif ($boost_type eq "Orca ICT1 Boost")
+	{
+		my $orca_boost = $Mining_Laser_optimization_base_1
+			* $Tech_2_Command_Burst_Modules_1
+			* (1+0.1 * $Mining_Director_Skill)
+			* $Mining_Foreman_Mindlink_bonus_1
+			* (1+0.01*$Industrial_Command_Ship_Skill) 
+			* (1+0.10); # T1 Industrial Core;
+		$boost_factor = (1- $orca_boost);
+	}
+	elsif ($boost_type eq "Orca ICT2 Boost")
+	{
+		my $orca_boost = $Mining_Laser_optimization_base_1
+			* $Tech_2_Command_Burst_Modules_1
+			* (1+0.1 * $Mining_Director_Skill)
+			* $Mining_Foreman_Mindlink_bonus_1
+			* (1+0.01*$Industrial_Command_Ship_Skill) 
+			* (1+0.15); # T2 Industrial Core;
 		$boost_factor = (1- $orca_boost);
 	}
 	elsif ($boost_type eq "Rorqual Boost")
@@ -205,11 +225,12 @@ sub get_ore_mining_amount
 	my $mining_upgrades_x4               = (1+0.4116);
 
 	# Modulated Strip Miner II Attribute
-	my $Strip_Miner_II_Mining_Amount = 450;
+	my $Strip_Miner_II_Mining_Amount = 480;
 	my $Strip_Miner_II_Cycle_Time    = 180;
 
 	# Minig Crystal II Attribute
-	my $Asteroid_Specialization_Yield_Modifier =  1.75;
+	my $Asteroid_Specialization_Yield_Modifier    =  1.8;
+	my $Asteroid_Specialization_Duration_Modifier =  0.8;
 
 	# Modulated Deep Core Miner II Attributes
 	my $ModulatedDeepCoreMinerII_cycle  = 180;
@@ -237,7 +258,9 @@ sub get_ore_mining_amount
 		  * $mining_upgrades_x1
 		;
 
-		my $venture_base_time = ($ModulatedDeepCoreMinerII_cycle * $boost_factor);
+		my $venture_base_time = ($ModulatedDeepCoreMinerII_cycle 
+			* $Asteroid_Specialization_Duration_Modifier
+			* $boost_factor);
 
 
 		if ($venture_base_time > 0 )
@@ -262,7 +285,9 @@ sub get_ore_mining_amount
 		  * $Highwall_Mining_MX1005_Implant
 		;
 
-		my $endurance_base_time = ($ModulatedDeepCoreMinerII_cycle * $boost_factor);
+		my $endurance_base_time = ($ModulatedDeepCoreMinerII_cycle 
+			* $Asteroid_Specialization_Duration_Modifier
+			* $boost_factor);
 
 		if ($endurance_base_time > 0 )
 		{
@@ -290,7 +315,9 @@ sub get_ore_mining_amount
 		  * $mining_upgrades_x1
 		;
 
-		my $prospect_base_time = ($ModulatedDeepCoreMinerII_cycle * $boost_factor);
+		my $prospect_base_time = ($ModulatedDeepCoreMinerII_cycle 
+			* $Asteroid_Specialization_Duration_Modifier
+			* $boost_factor);
 
 
 		if ($prospect_base_time > 0 )
@@ -304,27 +331,31 @@ sub get_ore_mining_amount
 			* $Asteroid_Specialization_Yield_Modifier
 			* (1+0.05*$Mining_Skill) 
 			* (1+0.05*$Astrogeology_Skill)
+			* (1+0.02*$Mining_Barge_Skill)
 			* $Highwall_Mining_MX1005_Implant
-			* $mining_upgrades_x2;
+			* $mining_upgrades_x3;
 
 		my $proc_base_time = 	$Strip_Miner_II_Cycle_Time 
-								* (1-0.02*$Mining_Barge_Skill)
-								* $boost_factor;
+			* $Asteroid_Specialization_Duration_Modifier
+			* $boost_factor;
 
 		$mining_yield_per_second = $proc_base_yield / $proc_base_time;
 	}
 	elsif  ($ship_type eq "Retriever")
 	{
 		my $retriever_base_time = 	$Strip_Miner_II_Cycle_Time 
-								* (1-0.02*$Mining_Barge_Skill)
+								* $Asteroid_Specialization_Duration_Modifier
 								* $boost_factor;
 
 		my $retriever_base_yield =  $Strip_Miner_II_Mining_Amount 
 			* $Asteroid_Specialization_Yield_Modifier
 			* (1+0.05*$Mining_Skill) 
 			* (1+0.05*$Astrogeology_Skill)
+			* (1+0.03*$Mining_Barge_Skill)
 			* $Highwall_Mining_MX1005_Implant
+			* (1+0.10) # role bonus
 			* $mining_upgrades_x3;
+
 
 		$mining_yield_per_second = $retriever_base_yield / $retriever_base_time;
 	}
@@ -333,14 +364,15 @@ sub get_ore_mining_amount
 		my $covetor_role_bonus = (1-0.25);
 
 		my $covetor_base_time =     $Strip_Miner_II_Cycle_Time 
-			* (1-0.02*$Mining_Barge_Skill)
-			* $covetor_role_bonus
+			* $Asteroid_Specialization_Duration_Modifier
+			* (1-0.25)  # role bonus
 			* $boost_factor;
 
 		my $covetor_base_yield = $Strip_Miner_II_Mining_Amount 
 			* $Asteroid_Specialization_Yield_Modifier
 			* (1+0.05*$Mining_Skill) 
 			* (1+0.05*$Astrogeology_Skill)
+			* (1+0.03*$Mining_Barge_Skill)
 			* $Highwall_Mining_MX1005_Implant
 			* $mining_upgrades_x3;
 
@@ -352,12 +384,13 @@ sub get_ore_mining_amount
 			* $Asteroid_Specialization_Yield_Modifier
 			* (1+0.05*$Mining_Skill) 
 			* (1+0.05*$Astrogeology_Skill)
+			* (1+0.02*$Mining_Barge_Skill)
+			* (1+0.02*$Exhumer_Skill)
 			* $Highwall_Mining_MX1005_Implant
 			* $mining_upgrades_x3;
 
 		my $skiff_base_time =    $Strip_Miner_II_Cycle_Time 
-			* (1-0.02*$Mining_Barge_Skill)
-			* (1-0.02*$Exhumer_Skill)
+			* $Asteroid_Specialization_Duration_Modifier
 			* $boost_factor;
 
 		$mining_yield_per_second = $skiff_base_yield / $skiff_base_time;
@@ -368,12 +401,14 @@ sub get_ore_mining_amount
 			* $Asteroid_Specialization_Yield_Modifier
 			* (1+0.05*$Mining_Skill) 
 			* (1+0.05*$Astrogeology_Skill)
+			* (1+0.03*$Mining_Barge_Skill) 
+			* (1+0.04*$Exhumer_Skill) 
 			* $Highwall_Mining_MX1005_Implant
 			* $mining_upgrades_x3;
 
 		my $mackinaw_base_time =    $Strip_Miner_II_Cycle_Time 
-			* (1-0.02*$Mining_Barge_Skill)
-			* (1-0.02*$Exhumer_Skill)
+			* $Asteroid_Specialization_Duration_Modifier
+			* (1-0.10)  # role bonus
 			* $boost_factor;
 
 		$mining_yield_per_second = $mackinaw_base_yield / $mackinaw_base_time;
@@ -384,13 +419,15 @@ sub get_ore_mining_amount
 			* $Asteroid_Specialization_Yield_Modifier
 			* (1+0.05*$Mining_Skill) 
 			* (1+0.05*$Astrogeology_Skill)
+			* (1+0.03*$Mining_Barge_Skill) 
+			* (1+0.06*$Exhumer_Skill) 
 			* $Highwall_Mining_MX1005_Implant
 			* $mining_upgrades_x3;
 
 		my $hulk_base_time =    $Strip_Miner_II_Cycle_Time 
-			* (1-0.02*$Mining_Barge_Skill)
+			* $Asteroid_Specialization_Duration_Modifier
 			* (1-0.03*$Exhumer_Skill)
-			* (1-0.25)  # role bonus
+			* (1-0.15)  # role bonus
 			* $boost_factor;
 
 		$mining_yield_per_second = $hulk_base_yield / $hulk_base_time;
@@ -641,7 +678,14 @@ sub get_ore_drone_amount
 			* (1 + 0.15 ) # small mining drone augmentor II
 			* (1 + 0.10 ) # small mining drone augmentor I
 			;
-		$number_of_drones = 2;
+		if ($drone_type eq "Harvester Mining Drone") 
+		{
+			$number_of_drones = 1;
+		}
+		else
+		{
+			$number_of_drones = 2;
+		}
 	}
 	elsif  ($ship_type eq "Endurance")
 	{
@@ -655,10 +699,11 @@ sub get_ore_drone_amount
 		
 		if ($drone_type eq "Harvester Mining Drone") 
 		{
-			$number_of_drones = 3;
+			$number_of_drones = 1;
 		}
+
 	}
-	elsif   (($ship_type eq "Covetor") || ($ship_type eq "Retriever"))
+	elsif   ($ship_type eq "Covetor") 
 	{
 		$drone_yield_per_second =$drone_base
 			* (1 + 0.1 * $Drone_Interfacing_Skill)
@@ -668,7 +713,7 @@ sub get_ore_drone_amount
 			* (1 + 0.10 ) # medium mining drone augmentor I
 			;
 	}
-	elsif   ($ship_type eq "Procurer")
+	elsif   (($ship_type eq "Procurer")|| ($ship_type eq "Retriever"))
 	{
 		$drone_yield_per_second =$drone_base
 			* (1 + 0.1 * $Drone_Interfacing_Skill)
@@ -714,7 +759,32 @@ sub get_ore_drone_amount
 			* (1 + 0.15 ) # medium mining drone augmentor II
 			* (1 + 0.15 ) # medium mining drone augmentor II
 			* (1 + 0.10 ) # medium mining drone augmentor I
-			* (1 + 1.00)  # role bonus
+		;
+	}
+	elsif ($ship_type eq "Orca ICT1")
+	{
+		$drone_yield_per_second =$drone_base
+			* (1 + 0.1 * $Industrial_Command_Ships_Skill)
+			* (1 + 0.1 * $Drone_Interfacing_Skill)
+			* (1 + 0.05 * $Mining_Drone_Operation_Skill)
+			* (1 + 0.02 * $Mining_Drone_Specialization_Skill)
+			* (1 + 0.25 ) # ICT1 Bonus
+			* (1 + 0.15 ) # medium mining drone augmentor II
+			* (1 + 0.15 ) # medium mining drone augmentor II
+			* (1 + 0.10 ) # medium mining drone augmentor I
+		;
+	}
+	elsif ($ship_type eq "Orca ICT2")
+	{
+		$drone_yield_per_second =$drone_base
+			* (1 + 0.1 * $Industrial_Command_Ships_Skill)
+			* (1 + 0.1 * $Drone_Interfacing_Skill)
+			* (1 + 0.05 * $Mining_Drone_Operation_Skill)
+			* (1 + 0.02 * $Mining_Drone_Specialization_Skill)
+			* (1 + 0.75 ) # ICT1 Bonus
+			* (1 + 0.15 ) # medium mining drone augmentor II
+			* (1 + 0.15 ) # medium mining drone augmentor II
+			* (1 + 0.10 ) # medium mining drone augmentor I
 		;
 	}
 	elsif ($ship_type eq "Rorqual")
@@ -739,7 +809,7 @@ sub get_ore_drone_amount
 			* (1 + 0.15 ) # medium mining drone augmentor II
 			* (1 + 0.15 ) # medium mining drone augmentor II
 			* (1 + 0.10 ) # medium mining drone augmentor I
-			* (1 + 4.00 ) # 400% ic1 bonus
+			* (1 + 1.70 ) # 170% ic1 bonus
 			;
 	}
 	elsif ($ship_type eq "Rorqual ICT2")
@@ -752,7 +822,7 @@ sub get_ore_drone_amount
 			* (1 + 0.15 ) # medium mining drone augmentor II
 			* (1 + 0.15 ) # medium mining drone augmentor II
 			* (1 + 0.10 ) # medium mining drone augmentor I
-			* (1 + 5.00 ) # 400% ic1 bonus
+			* (1 + 3.00 ) # 300% ic1 bonus
 			;
 	}
 	my $out_string = "";
