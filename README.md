@@ -155,7 +155,7 @@ ORE DRONE in_game_value
 
 List of Drone Mining Augmentor Rigs (T1 and T2) used to max out drone yield.
 
-|Ship|Drone Rigs|Ore Drones|
+|Ship|Drone Rigs|Ice Drones|
 |:-|:-|:-|
 |     Venture|2xT2 + 1xT1|   0   |
 |   Endurance|2xT2       |   3   |
