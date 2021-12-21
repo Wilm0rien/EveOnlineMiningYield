@@ -979,7 +979,7 @@ sub get_ice_drone_amount
 		$drone_cycle_duration =$drone_cycle_duration_base
 			* (1 - 0.05 * $Ice_Harvesting_Drone_Operation_Skill)
 			* (1 - 0.02 * $Ice_Harvesting_Drone_Specialication_Skill)
-			* (1 - 0.10 * $Capital_Industrial_Ships_Skill)
+			* (1 - 0.06 * $Capital_Industrial_Ships_Skill)
 			* (1 - 0.75)
 			* (1 - 0.10) # Medium Drone Mining Augmentor I
 			* (1 - 0.15) # Medium Drone Mining Augmentor II
@@ -996,7 +996,7 @@ sub get_ice_drone_amount
 		$drone_cycle_duration =$drone_cycle_duration_base
 			* (1 - 0.05 * $Ice_Harvesting_Drone_Operation_Skill)
 			* (1 - 0.02 * $Ice_Harvesting_Drone_Specialication_Skill)
-			* (1 - 0.10 * $Capital_Industrial_Ships_Skill)
+			* (1 - 0.06 * $Capital_Industrial_Ships_Skill)
 			* (1 - 0.85)
 			* (1 - 0.10) # Medium Drone Mining Augmentor I
 			* (1 - 0.15) # Medium Drone Mining Augmentor II

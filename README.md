@@ -55,15 +55,16 @@ The formular behind this table is calculated as followed:
 	my $Mining_Foreman_Mindlink_bonus_1  = (1+0.25);
 	my $Mining_Laser_optimization_base_1 = 0.15;
 	my $Tech_2_Command_Burst_Modules_1   = (1+0.25);
-	my $T2_Industrial_Core               = (1+0.36);
+	my $T2_Industrial_Core               = (1+0.40);
 	my $Highwall_Mining_MX1005_Implant   = (1+0.05);
 	my $mining_upgrades_x3               = (1+0.295);
 
 	# Minig Crystal II Attribute
-	my $Asteroid_Specialization_Yield_Modifier =  1.75;
+	my $Asteroid_Specialization_Yield_Modifier =  1.8;
+	my $Asteroid_Specialization_Duration_Modifier =  0.8;
 
 	# Modulated Strip Miner II Attribute
-	my $Strip_Miner_II_Mining_Amount = 450;
+	my $Strip_Miner_II_Mining_Amount = 480;
 	my $Strip_Miner_II_Cycle_Time    = 180;
 
 	my $rorqual_boost_t2 = $Mining_Laser_optimization_base_1
@@ -79,18 +80,19 @@ The formular behind this table is calculated as followed:
 		* $Asteroid_Specialization_Yield_Modifier
 		* (1+0.05*$Mining_Skill) 
 		* (1+0.05*$Astrogeology_Skill)
+		* (1+0.03*$Mining_Barge_Skill) 
+		* (1+0.06*$Exhumer_Skill) 
 		* $Highwall_Mining_MX1005_Implant
-		* $mining_upgrades_x3;
+		* $mining_upgrades_x3 ;
 
 	my $hulk_base_time =    $Strip_Miner_II_Cycle_Time 
-		* (1-0.02*$Mining_Barge_Skill)
+		* $Asteroid_Specialization_Duration_Modifier
 		* (1-0.03*$Exhumer_Skill)
-		* (1-0.25)  # role bonus
+		* (1-0.15)  # role bonus
 		* $boost_factor;
 
 	my $mining_yield_per_second = $hulk_base_yield / $hulk_base_time;
-
-	printf("%3.2f", $mining_yield_per_second); # prints 40.27
+	printf("m3/s     %3.2f\n", $mining_yield_per_second); # prints 68.55
 ```
 
 Thanks to a hint from [Lesican](https://www.reddit.com/r/Eve/comments/hhimzp/added_numbers_for_ice_mining_yield_and_updated/fwgjt6r?utm_source=share&utm_medium=web2x&context=3) the mining frigates are all fitted with a Modulated Deep Core Miner II and a Mining Crystal II rather than a Miner II in order to achieve max yield on these ships.
@@ -121,9 +123,9 @@ This value is calculated as followed:
 		* (1 + 0.15 ) # medium mining drone augmentor II
 		* (1 + 0.15 ) # medium mining drone augmentor II
 		* (1 + 0.10 ) # medium mining drone augmentor I
-		* (1 + 5.00 ); # 500% ic2 bonus
+		* (1 + 3.00 ); # 300% ic2 bonus
 
-	printf("%3.2f", $drone_yield_per_second); # prints 2160.30
+	printf("%3.2f", $drone_yield_per_second); # prints 1440.20
 ```
 
 The following tables shows the yield in m3 *per 60s drone cycle*
@@ -223,7 +225,7 @@ my $Mining_Director_Skill          = 5;
 my $Capital_Industrial_Ships_Skill = 5;
 my $Mining_Foreman_Mindlink_bonus_1  = (1+0.25);
 my $Tech_2_Command_Burst_Modules_1   = (1+0.25);
-my $T2_Industrial_Core               = (1+0.36);
+my $T2_Industrial_Core               = (1+0.40);
 my $Mining_Laser_optimization_base_1 = 0.15;
 
 my $boost_factor = 1 - $Mining_Laser_optimization_base_1
@@ -241,9 +243,9 @@ my $Ice_Harvester_Upgrade_II       = 0.09;
 my $Yeti_Harvesting_IH_1005_Implant = 0.05;
 
 my $Ice_Harvester_Cycle_Time = $Ice_Harvester_II_Base_Duration
-							* (1 - 0.25) # role bonus
-							* (1 - 0.02 * $Mining_Barge_Skill )
-							* (1 - 0.03 * $Exhumer_Skill )
+							* (1 - 0.30) # role bonus
+							* (1 - 0.03 * $Mining_Barge_Skill )
+							* (1 - 0.04 * $Exhumer_Skill )
 							* (1 - 0.05 * $Ice_Harvesting_Skill )
 							* (1 - 0.12 ) # Medium Ice Harvesting Accelerator I
 							* (1 - $Ice_Harvester_Upgrade_II ) 
@@ -252,7 +254,7 @@ my $Ice_Harvester_Cycle_Time = $Ice_Harvester_II_Base_Duration
 							* (1 - $Yeti_Harvesting_IH_1005_Implant) 
 							* $boost_factor;
 
-printf("%3.2f", 1000 / $Ice_Harvester_Cycle_Time ) # prints "45.84"
+printf("%3.2f", 1000 / $Ice_Harvester_Cycle_Time ) # prints "57.78"
 ```
 
 ## Drone Yields
@@ -269,16 +271,16 @@ my $Ice_Harvesting_Drone_Specialication_Skill = 5;
 my $Capital_Industrial_Ships_Skill = 5;
 
 my $drone_cycle_duration =$Excavator_Ice_Harvesting_Drone_Duration
-	* (1 - 0.05 * $Ice_Harvesting_Drone_Operation_Skill)
-	* (1 - 0.02 * $Ice_Harvesting_Drone_Specialication_Skill)
-	* (1 - 0.10 * $Capital_Industrial_Ships_Skill)
-	* (1 - 0.80) # Industrial Core II Bonus
-	* (1 - 0.10) # Medium Drone Mining Augmentor I
-	* (1 - 0.15) # Medium Drone Mining Augmentor II
-	* (1 - 0.15) # Medium Drone Mining Augmentor II
-	;
+		* (1 - 0.05 * $Ice_Harvesting_Drone_Operation_Skill)
+		* (1 - 0.02 * $Ice_Harvesting_Drone_Specialication_Skill)
+		* (1 - 0.06 * $Capital_Industrial_Ships_Skill)
+		* (1 - 0.85) # -85% ic2 bonus
+		* (1 - 0.10) # Medium Drone Mining Augmentor I
+		* (1 - 0.15) # Medium Drone Mining Augmentor II
+		* (1 - 0.15) # Medium Drone Mining Augmentor II
+		;
 
-printf("%3.2f", $drone_cycle_duration ) # prints 13.61
+printf("%3.2f", $drone_cycle_duration ) # prints 14.29
 ```
 
 Note that the Mining Drone I and Harvester Mining Drone do not get a bonus from the Mining Drone Specialization Skill
