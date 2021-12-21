@@ -932,7 +932,7 @@ sub get_ice_drone_amount
 			;
 		$number_of_drones = 1;
 	}
-	elsif ($ship_type eq "Orca ICT1 Boost")
+	elsif ($ship_type eq "Orca ICT1")
 	{
 		$drone_cycle_duration =$drone_cycle_duration_base
 			* (1 - 0.05 * $Ice_Harvesting_Drone_Operation_Skill)
@@ -945,7 +945,7 @@ sub get_ice_drone_amount
 			;
 		$number_of_drones = 1;
 	}
-	elsif ($ship_type eq "Orca ICT2 Boost")
+	elsif ($ship_type eq "Orca ICT2")
 	{
 		$drone_cycle_duration =$drone_cycle_duration_base
 			* (1 - 0.05 * $Ice_Harvesting_Drone_Operation_Skill)
