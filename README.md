@@ -153,17 +153,22 @@ ORE DRONE in_game_value
 |Rorqual ICT2|  409.15|  594.08|  666.09|  687.37| 1440.20|
 
 
-Some ships allow fitting Drone Mining Augmentor Rigs. The following table these are listed as T1 for *Mining Drone Augmentor I* and T2 for *Mining Drone Augmentor II*
+List of Drone Mining Augmentor Rigs (T1 and T2) used to max out drone yield.
 
-|Ship|Number of Drones|Drone Rigs|
+|Ship|Drone Rigs|Ore Drones|
 |:-|:-|:-|
-|Venture|2|2 x T2 + 1 x T1|
-|Endurance|5 (only 3 Harvester)|2 x T2 + 1 x T1|
-|Prospect|no drone bay|   |
-|Covetor + Retriever|5|1 x T2 + 1 x T1|
-|Procurer|5|2 x T2 + 1 x T1|
-|Mackinaw, Skiff, Hulk|5|2 x T2|
-|Porpoise, Orca, Rorqual|5|2 x T2 + 1x T1|
+|     Venture|2xT2 + 1xT1|   0   |
+|   Endurance|2xT2       |   3   |
+|    Prospect|           |   0   |
+|    Procurer|2xT2 + 1xT1|   5   |
+|   Retriever|2xT2 + 1xT1|   5   |
+|     Covetor|1xT2 + 1xT1|   5   |
+|       Skiff|2xT2       |   5   |
+|    Mackinaw|2xT2       |   5   |
+|        Hulk|2xT2       |   5   |
+|    Porpoise|2xT2 + 1xT1|   5   |
+|        Orca|2xT2 + 1xT1|   5   |
+|     Rorqual|2xT2 + 1xT1|   5   |
 
 The following table shows the yield in m3/s per ship but *does not consider the yield loss caused by drone travel time*. 
 
@@ -171,7 +176,7 @@ ORE DRONE m3_per_second
 |Ship|Mining Drone I|Mining Drone II|Augmented Mining Drone|Harvester Mining Drone|Excavator Mining Drone|
 |:-|:-|:-|:-|:-|:-|
 |     Venture|    2.27|    3.30|    3.70|    1.91|        |
-|   Endurance|    5.17|    7.50|    8.41|    1.74|        |
+|   Endurance|    3.10|    4.50|    5.05|    1.74|        |
 |    Prospect|        |        |        |        |        |
 |    Procurer|    5.68|    8.25|    9.25|    9.55|        |
 |   Retriever|    5.68|    8.25|    9.25|    9.55|        |
@@ -296,22 +301,23 @@ my $drone_cycle_duration =$Excavator_Ice_Harvesting_Drone_Duration
 printf("%3.2f", $drone_cycle_duration ) # prints 14.29
 ```
 
-Note that the Mining Drone I and Harvester Mining Drone do not get a bonus from the Mining Drone Specialization Skill
+List of Drone Mining Augmentor Rigs (T1 and T2) used to max out drone yield.
 
-The cycle time varies depending on  the number of Drone Mining Augmentor Rigs fitted to the ship. Some ships (Venture, Prospect, Endurance, Retriever) cannot use the harvester mining drone becacause there is not enough room in the drone bay.
-Except for the rorqual only 1 harvester drone can be launched because of the bandwidth needed per drone.
-
-|Ship|Number of Drones|Drone Rigs|
+|Ship|Drone Rigs|Ore Drones|
 |:-|:-|:-|
-|Venture|0|N/A|
-|Prospect|0|N/A|
-|Endurance|0|N/A|
-|Retriever|0|N/A|
-|Covetor|1|no drone rigs|
-|Procurer|1|2 x T2 + 1 x T1|
-|Procurer, Skiff, Mackinaw, Hulk|1|1 x T2|
-|Porpoise, Orca, Rorqual|1|2 x T2 + 1x T1|
-|Rorqual|5|2 x T2 + 1x T1|
+|     Venture|           |   0   |
+|   Endurance|           |   0   |
+|    Prospect|           |   0   |
+|    Procurer|2xT2 + 1xT1|   1   |
+|   Retriever|2xT2 + 1xT1|   1   |
+|     Covetor|1xT2 + 1xT1|   1   |
+|       Skiff|2xT2       |   1   |
+|    Mackinaw|2xT2       |   1   |
+|        Hulk|2xT2       |   1   |
+|    Porpoise|2xT2 + 1xT1|   1   |
+|        Orca|2xT2 + 1xT1|   1   |
+|     Rorqual|2xT2 + 1xT1|   5   |
+
 
 The following tables shows the cycle time for a drone depending on which ship is used with the rigs listed above. 
 

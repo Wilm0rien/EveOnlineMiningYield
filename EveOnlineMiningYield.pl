@@ -703,7 +703,10 @@ sub get_ore_drone_amount
 		{
 			$number_of_drones = 1;
 		}
-
+		else
+		{
+			$number_of_drones = 3;
+		}
 	}
 	elsif   ($ship_type eq "Covetor") 
 	{
