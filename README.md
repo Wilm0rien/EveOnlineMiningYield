@@ -9,13 +9,13 @@ Currently this page excludes Mercoxit and Gas yields.
 
 -- <cite>[Patch Notes 19.11 #1](https://www.eveonline.com/news/view/patch-notes-version-19-11)</cite>
 
-* Depending on the residue probability additional ore is removed from the asteroid.
-* This mechanic does not affect mining yield.
-* It affects the time needed to deplete the ore site.
+* Depending on the residue probability ore is removed from the asteroid additional to the mined ore amount.
+* The waste is removed from the asteroid after mining happened, therefore this mechanic does not affect mining yield per cycle.
+* The ore wasted in this way affects the time needed to deplete the ore site and the overall resources gathered after completing the mining operation.
 
-## Residue Type A and B Comparison
+## Residue Crystal Type A and B Comparison
 
-This example Scenario consists of three Hulks with Rorqual Boost mining a Colossal Asteroid Cluster filled with 3.6M m3 (Bistot and Arkonor). In this example the Rorqual only does the boost.
+This example Scenario consists of three Hulks with Rorqual Boost mining a Colossal Asteroid Cluster filled with 3.6M m3 (Bistot and Arkonor). In order to compare the crystal types the Rorqual drones are not used in this example.
 
 |Crystal Type|Cluster Depleted|Ore Mined|
 |:-|:-|:-|
@@ -260,7 +260,7 @@ ICE m3_per_second
 |        Hulk|   44.46|   72.50|   70.48|   74.86|   77.26|   79.32|  103.71|  115.56|
 
 
-The formula behind this table is calculated as followed:
+The formular behind this table is calculated as followed:
 
 ```perl
 my $Mining_Director_Skill          = 5;
