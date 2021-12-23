@@ -26,6 +26,7 @@ This example Scenario consists of three Hulks with Rorqual Boost mining a Coloss
 |Crystal_Type_B_II|88 min|2.176M m3|
 
 
+In this example choosing Crystal Type A with a lower mining yield per second results in:
 1. Additional time needed to deplete the ore site with type A: 42 min (32.04%)
 2. Additional ore gathered after completing the mining operation with type A: 0.403M (15.44%)
 
