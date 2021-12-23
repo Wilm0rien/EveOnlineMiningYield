@@ -11,7 +11,9 @@ Currently this page excludes Mercoxit and Gas yields.
 
 * Depending on the residue probability ore is removed from the asteroid additional to the mined ore amount.
 * The waste is removed from the asteroid after mining happened, therefore this mechanic does not affect mining yield per cycle.
-* The ore wasted in this way affects the time needed to deplete the ore site and the overall resources gathered after completing the mining operation.
+* The ore wasted in this way affects:
+1. the time needed to deplete the ore site 
+2. the overall ore gathered after completing the mining operation.
 
 ## Residue Crystal Type A and B Comparison
 
@@ -22,8 +24,9 @@ This example Scenario consists of three Hulks with Rorqual Boost mining a Coloss
 |Crystal_Type_A_II|130 min|2.556M m3|
 |Crystal_Type_B_II|88 min|2.176M m3|
 
-* Additional Ore preserved with type A: 0.403M (15.44%)
-* Additional Time needed with type A: 42 min (32.04%)
+
+1. Additional time needed to deplete the ore site with type A: 42 min (32.04%)
+2. Additional ore gathered after completing the mining operation with type A: 0.403M (15.44%)
 
 ![residue_](residue_graph.png)
 
