@@ -3,6 +3,33 @@ This is a followup to a [reddit post](https://www.reddit.com/r/Eve/comments/5bp0
 
 Currenlty this page excludes Mercoxit and Gas yields.
 
+# Residue Mechanic
+
+> Residue probability is the likelihood that the mining laser will [..] destroy some of the yet untapped resources in the asteroid each cycle [..]
+
+- [Patch Notes 19.11 #1](https://www.eveonline.com/news/view/patch-notes-version-19-11)
+
+---
+**NOTE**
+* Depending on the residue probability additional ore is removed from the asteroid.
+* This mechanic does not affect mining yield.
+* It affects the time needed to deplete the ore site.
+---
+
+## Residue Type A and B Comparison
+
+This example Scenario consists of three Hulks with Rorqual Boost mining a Colossal Asteroid Cluster filled with 3.6M m3 (Bistot and Arkonor). In this example the Rorqual only does the boost.
+
+|Crystal Type|Cluster Depleted|Ore Mined|
+|:-|:-|:-|
+|Crystal_Type_A_II|130 min|2.556M m3|
+|Crystal_Type_B_II|88 min|2.176M m3|
+
+* Additional Ore preserved with type A: 0.403M (15.44%)
+* Additional Time needed with type A: 42 min (32.04%)
+
+![residue_](residue_graph.png)
+
 # Ore Mining Yield
 
 Yield values for Ore.
@@ -365,6 +392,7 @@ ICE DRONE m3_per_second
 
 ## Code
 The code to generate these tables is [here](EveOnlineMiningYield.pl)
+The code to generate the residue graph is [here](gen_residue_graph.pl)
 
 # COPYRIGHT NOTICE
 EVE Online and the EVE logo are the registered trademarks of CCP hf. All rights are reserved worldwide. All other trademarks are the property of their respective owners. EVE Online, the EVE logo, EVE and all associated logos and designs are the intellectual property of CCP hf. All artwork, screenshots, characters, vehicles, storylines, world facts or other recognizable features of the intellectual property relating to these trademarks are likewise the intellectual property of CCP hf. CCP hf. has granted permission to EveOnlineMiningYield to use EVE Online and all associated logos and designs for promotional and information purposes on its website but does not endorse, and is not in any way affiliated with, EveOnlineMiningYield. CCP is in no way responsible for the content on or functioning of this website, nor can it be liable for any damage arising from the use of this website.
