@@ -12,7 +12,7 @@ Currently this page excludes Mercoxit and Gas yields.
 * Depending on the residue probability ore is removed from the asteroid additional to the mined ore amount.
 * The waste is removed from the asteroid after mining happened, therefore this mechanic does not affect mining yield per cycle.
 
-The ore wasted in this way affects:
+The residue probability affects:
 1. the time needed to deplete the ore site 
 2. the overall ore gathered after completing the mining operation.
 
