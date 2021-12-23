@@ -1,20 +1,17 @@
 # EveOnlineMiningYield
 This is a followup to a [reddit post](https://www.reddit.com/r/Eve/comments/5bp0sm/mining_yield_with_the_november_update/) which shows the comparison of the different combinations of mining ships and boost.
 
-Currenlty this page excludes Mercoxit and Gas yields.
+Currently this page excludes Mercoxit and Gas yields.
 
 # Residue Mechanic
 
 > Residue probability is the likelihood that the mining laser will [..] destroy some of the yet untapped resources in the asteroid each cycle [..]
 
-- [Patch Notes 19.11 #1](https://www.eveonline.com/news/view/patch-notes-version-19-11)
+-- <cite>[Patch Notes 19.11 #1](https://www.eveonline.com/news/view/patch-notes-version-19-11)</cite>
 
----
-**NOTE**
 * Depending on the residue probability additional ore is removed from the asteroid.
 * This mechanic does not affect mining yield.
 * It affects the time needed to deplete the ore site.
----
 
 ## Residue Type A and B Comparison
 
@@ -69,7 +66,7 @@ The following table shows the Yield in m3/s per *ship* (multiple mining lasers)
 |        Hulk|   52.76|   86.02|   83.62|   88.82|   91.67|   94.11|  123.05|  137.11|
 
 
-The formular behind this table is calculated as followed:
+The formula behind this table is calculated as followed:
 
 ```perl
 	# skills 
@@ -219,7 +216,7 @@ ORE DRONE m3_per_second
 |Rorqual ICT1|   23.01|   33.42|   37.47|   38.66|   81.01|
 |Rorqual ICT2|   34.10|   49.51|   55.51|   57.28|  120.02|
 
-(ICT1 + ICT2 indicates if a rorqual as the Industrial Core I or Industrial Core II being active.)
+(ICT1 + ICT2 indicates if a Rorqual as the Industrial Core I or Industrial Core II being active.)
 
 # Ice Mining Yield
 
@@ -263,7 +260,7 @@ ICE m3_per_second
 |        Hulk|   44.46|   72.50|   70.48|   74.86|   77.26|   79.32|  103.71|  115.56|
 
 
-The formular behind this table is calculated as followed:
+The formula behind this table is calculated as followed:
 
 ```perl
 my $Mining_Director_Skill          = 5;
@@ -391,8 +388,8 @@ ICE DRONE m3_per_second
 |Rorqual ICT2|  120.55|  144.66|  154.99|  349.97|
 
 ## Code
-The code to generate these tables is [here](EveOnlineMiningYield.pl)
-The code to generate the residue graph is [here](gen_residue_graph.pl)
+* The code to generate these tables is [here](EveOnlineMiningYield.pl)
+* The code to generate the residue graph is [here](gen_residue_graph.pl)
 
 # COPYRIGHT NOTICE
 EVE Online and the EVE logo are the registered trademarks of CCP hf. All rights are reserved worldwide. All other trademarks are the property of their respective owners. EVE Online, the EVE logo, EVE and all associated logos and designs are the intellectual property of CCP hf. All artwork, screenshots, characters, vehicles, storylines, world facts or other recognizable features of the intellectual property relating to these trademarks are likewise the intellectual property of CCP hf. CCP hf. has granted permission to EveOnlineMiningYield to use EVE Online and all associated logos and designs for promotional and information purposes on its website but does not endorse, and is not in any way affiliated with, EveOnlineMiningYield. CCP is in no way responsible for the content on or functioning of this website, nor can it be liable for any damage arising from the use of this website.
