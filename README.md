@@ -44,7 +44,7 @@ The chart below shows the content of the mining hold filled by the three Hulks o
 
 Yield values for Ore. 
 
-*Only Crystal_Type_B_II is used for the numbers below* because for ship type comparison the crystal type a factor which affects a ships in the same way.
+*Only Crystal_Type_B_II is used for the numbers below*.
 
 ## Ship Yields
 The game displays the outcome of mining yield in the tooltip of the mining laser. For example when a hulk is boosted to the maximum possible value it displays a **68.6m3/s** value on its mining laser see this example screenshot: 
