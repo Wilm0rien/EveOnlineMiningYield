@@ -20,11 +20,11 @@ The residue probability affects:
 
 This example Scenario consists of three Hulks with Rorqual Boost mining a Colossal Asteroid Cluster filled with 3.6M m3 (Bistot and Arkonor). In order to compare the crystal types the Rorqual drones are not used in this example.
 
-|Crystal Type|Cluster Depleted|Ore Mined|Residue Probability|
+|Crystal Type|Residue Probability|Cluster Depleted|Ore Mined|
 |:-|:-|:-|:-|
-|strip_miner_I|263 min| 3.598 m3|0 %|
-|Crystal_Type_A_II|133 min| 2.626 m3|37.6 %|
-|Crystal_Type_B_II|88 min| 2.174 m3|64 %|
+|strip_miner_I|0 %|263 min| 3.598 m3|
+|Crystal_Type_A_II|37.6 %|133 min| 2.626 m3|
+|Crystal_Type_B_II|64 %|88 min| 2.174 m3|
 
 Choosing _Crystal Type A_ over Crystal Type B results in:
 1. Additional time needed to deplete the ore site with Crystal_Type_A_II: 45 min (33.97%)
