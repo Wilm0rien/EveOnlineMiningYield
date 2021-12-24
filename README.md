@@ -16,15 +16,15 @@ The residue probability affects:
 1. the time needed to deplete the ore site 
 2. the overall ore gathered after completing the mining operation.
 
-## Residue Crystal Type A and B Comparison
+## Residue Crystal Type Comparison
 
 This example Scenario consists of three Hulks with Rorqual Boost mining a Colossal Asteroid Cluster filled with 3.6M m3 (Bistot and Arkonor). In order to compare the crystal types the Rorqual drones are not used in this example.
 
-|Crystal Type|Cluster Depleted|Ore Mined|
-|:-|:-|:-|
-|strip_miner_I|263 min| 3.598 m3|
-|Crystal_Type_A_II|133 min| 2.626 m3|
-|Crystal_Type_B_II|88 min| 2.174 m3|
+|Crystal Type|Cluster Depleted|Ore Mined|Residue Probability|
+|:-|:-|:-|:-|
+|strip_miner_I|263 min| 3.598 m3|0 %|
+|Crystal_Type_A_II|133 min| 2.626 m3|37.6 %|
+|Crystal_Type_B_II|88 min| 2.174 m3|64 %|
 
 Choosing _Crystal Type A_ over Crystal Type B results in:
 1. Additional time needed to deplete the ore site with Crystal_Type_A_II: 45 min (33.97%)
@@ -42,7 +42,9 @@ The chart below shows the content of the mining hold filled by the three Hulks o
 
 # Ore Mining Yield
 
-Yield values for Ore.
+Yield values for Ore. 
+
+*Only Crystal_Type_B_II is used for the numbers below* because for ship type comparison the crystal type a factor which affects a ships in the same way.
 
 ## Ship Yields
 The game displays the outcome of mining yield in the tooltip of the mining laser. For example when a hulk is boosted to the maximum possible value it displays a **68.6m3/s** value on its mining laser see this example screenshot: 

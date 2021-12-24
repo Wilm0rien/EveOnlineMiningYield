@@ -76,7 +76,7 @@ foreach my $elem ($crystal_type_A,  $strip_miner_I)
 	         $elem->{name}, $x_time_min, $x_time_per);
 	printf("Additional ore gathered after completing the mining operation with %s: %3.3fM (%3.2f%%)\n", 
 	        $elem->{name},$x_ore_m3, $x_ore_per );
-	my $type_B_gathered = ($x_time_s * $crystal_type_B->{miner_amount} /  $crystal_type_B->{cycle_time}*$number_of_mining_lasers);
+	my $type_B_gathered = ($x_time_s * ($crystal_type_B->{miner_amount} /  $crystal_type_B->{cycle_time}) *$number_of_mining_lasers);
 	printf("Ore that would have been gathered in the same time (%d min) with Crystal_Type_B_II in another cluster %3.3fM (%3.2f%%)\n", 
 	        $x_time_min, $type_B_gathered/1000000,  ($type_B_gathered /  $crystal_type_B->{mining_hold})*100);
 }
