@@ -32,6 +32,68 @@ my $crystal;
 $crystal->{TypeA}->{mining_hold_over_time}=[];
 $crystal->{TypeB}->{mining_hold_over_time}=[];
 
+my $crystal_type_A = new_crystal_obj(cycle_time =>50.04, miner_amount =>2744.32, residue_prob=>0.376, name =>"Crystal_Type_A_II");
+my $crystal_type_B = new_crystal_obj(cycle_time =>40.03, miner_amount =>2744.32, residue_prob=>0.64, name => "Crystal_Type_B_II");
+my $strip_miner_I  = new_crystal_obj(cycle_time =>50.04, miner_amount =>1905.77, residue_prob=>0.0, name => "strip_miner_I");
+
+my $number_of_mining_lasers = 6;
+
+my $time_s = 0;
+my @time_line;
+my $counter = 0;
+while ( ($crystal_type_A->{anomaly_storage} > $crystal_type_A->{miner_amount}) || 
+	($crystal_type_B->{anomaly_storage} > $crystal_type_B->{miner_amount}) ||
+	($strip_miner_I->{anomaly_storage} > $strip_miner_I->{miner_amount}) )
+{
+	$time_s += 0.1; # increment one per second
+	process_yield(\$crystal_type_A, $time_s);
+	process_yield(\$crystal_type_B, $time_s);
+	process_yield(\$strip_miner_I, $time_s);
+	if (($counter % 600)==0)
+	{
+		push @time_line, int($time_s/60);
+		push @{$crystal_type_A->{mining_hold_over_time}}, $crystal_type_A->{mining_hold};
+		push @{$crystal_type_B->{mining_hold_over_time}}, $crystal_type_B->{mining_hold};
+		push @{$strip_miner_I->{mining_hold_over_time}}, $strip_miner_I->{mining_hold};
+	}
+	$counter++;
+}
+
+printf("|Crystal Type|Cluster Depleted|Ore Mined|\n");
+printf("|:-|:-|:-|\n");
+foreach my $elem ($strip_miner_I, $crystal_type_A, $crystal_type_B)
+{
+	printf("|%s|%d min| %3.3f m3|\n", $elem->{name}, $elem->{last_time}/60, $elem->{mining_hold}/1000000)
+}
+printf("\n");
+
+foreach my $elem ($crystal_type_A,  $strip_miner_I)
+{
+	printf("Additional time needed to deplete the ore site with %s: %d min (%3.2f%%)\n", 
+	         $elem->{name}, extra_time($crystal_type_B, $elem));
+	printf("Additional ore gathered after completing the mining operation with %s: %3.3fM (%3.2f%%)\n", 
+	        $elem->{name}, ore_preserved($crystal_type_B, $elem));
+}
+
+my $graph_data = [ \@time_line,
+                   $crystal_type_A->{mining_hold_over_time}, 
+                   $crystal_type_B->{mining_hold_over_time},
+                   $strip_miner_I->{mining_hold_over_time}, ];
+
+$graph->set_legend(qw(Crystal_Type_A_II Crystal_Type_B_II Strip_Miner_I));
+my $gd = $graph->plot( $graph_data );
+
+if (defined $gd )
+{
+	if (open OUT, ">$image_name")
+	{
+		binmode(OUT);
+		print OUT $gd->png( );
+		close OUT;
+	}
+}
+
+
 sub new_crystal_obj
 {
 	my $obj;
@@ -44,65 +106,8 @@ sub new_crystal_obj
 	$obj->{miner_amount}          = $args{miner_amount};
 	$obj->{residue_prob}          = $args{residue_prob};
 	$obj->{last_time}             = 0;
+	$obj->{name}                  = $args{name};
 	return $obj;
-}
-
-my $crystal_type_A = new_crystal_obj(cycle_time =>50.04, miner_amount =>2744.32, residue_prob=>0.376);
-my $crystal_type_B = new_crystal_obj(cycle_time =>40.03, miner_amount =>2744.32, residue_prob=>0.64);
-
-my $number_of_mining_lasers = 6;
-
-my $time_s = 0;
-my @time_line;
-my $counter = 0;
-while ( ($crystal_type_A->{anomaly_storage} > $crystal_type_A->{miner_amount}) || 
-        ($crystal_type_B->{anomaly_storage} > $crystal_type_B->{miner_amount}) )
-{
-	$time_s += 0.1; # increment one per second
-	process_yield(\$crystal_type_A, $time_s);
-	process_yield(\$crystal_type_B, $time_s);
-	if (($counter % 600)==0)
-	{
-		push @time_line, int($time_s/60);
-		push @{$crystal_type_A->{mining_hold_over_time}}, $crystal_type_A->{mining_hold};
-		push @{$crystal_type_B->{mining_hold_over_time}}, $crystal_type_B->{mining_hold};
-	}
-	$counter++;
-}
-
-
-
-printf("Crystal_Type_A_II duration: %d mins; ore mined %3.3fM\n",
-       $crystal_type_A->{last_time}/60, $crystal_type_A->{mining_hold}/1000000);
-printf("Crystal_Type_B_II duration: %d mins; ore mined %3.3fM\n",
-       $crystal_type_B->{last_time}/60, $crystal_type_B->{mining_hold}/1000000);
-
-my $ore_preserved     = $crystal_type_A->{mining_hold} - $crystal_type_B->{mining_hold};
-my $ore_pre_percent = $crystal_type_B->{mining_hold}  / $crystal_type_A->{mining_hold};
-
-my $extra_time = ($crystal_type_A->{last_time}) -  ($crystal_type_B->{last_time});
-my $extra_time_percent =  ($crystal_type_B->{last_time}) / ($crystal_type_A->{last_time});
-
-printf("Additional Ore preserved with type A: %3.3fM (%3.2f%%)\n", 
-        $ore_preserved/1000000,  (1- $ore_pre_percent)*100);
-printf("Additional Time needed with type A: %d min (%3.2f%%)\n", 
-        ($extra_time /60),  (1- $extra_time_percent)*100);
-
-my $graph_data = [ \@time_line,
-                   $crystal_type_A->{mining_hold_over_time}, 
-                   $crystal_type_B->{mining_hold_over_time} ];
-
-$graph->set_legend(qw(Crystal_Type_A_II Crystal_Type_B_II));
-my $gd = $graph->plot( $graph_data );
-
-if (defined $gd )
-{
-	if (open OUT, ">$image_name")
-	{
-		binmode(OUT);
-		print OUT $gd->png( );
-		close OUT;
-	}
 }
 
 sub process_yield
@@ -128,4 +133,22 @@ sub process_yield
 			}
 		}
 	}
+}
+
+sub ore_preserved
+{
+	my $ref_obj  = $_[0];
+	my $comp_obj = $_[1];
+	my $ore_preserved   = ($comp_obj->{mining_hold} - $ref_obj->{mining_hold}) / 1000000;
+	my $ore_pre_per   = (1-( ($ref_obj->{mining_hold}  / $comp_obj->{mining_hold})))*100;
+	return $ore_preserved, $ore_pre_per;
+}
+
+sub extra_time
+{
+	my $ref_obj  = $_[0];
+	my $comp_obj = $_[1];
+	my $extra_time = (($comp_obj->{last_time}) -  ($ref_obj->{last_time})) / 60;
+	my $x_time_per =  (1-(($ref_obj->{last_time}) / ($comp_obj->{last_time})))*100;
+	return $extra_time, $x_time_per;
 }
