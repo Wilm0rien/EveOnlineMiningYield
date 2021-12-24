@@ -145,7 +145,7 @@ sub get_boost_factor
 			* $Tech_2_Command_Burst_Modules_1
 			* (1+0.1 * $Mining_Director_Skill)
 			* $Mining_Foreman_Mindlink_bonus_1
-			* (1+0.01*$Industrial_Command_Ship_Skill) ;
+			* (1+0.03*$Industrial_Command_Ship_Skill) ;
 		$boost_factor = (1- $orca_boost);
 	}
 	elsif ($boost_type eq "Orca ICT1 Boost")
@@ -154,7 +154,7 @@ sub get_boost_factor
 			* $Tech_2_Command_Burst_Modules_1
 			* (1+0.1 * $Mining_Director_Skill)
 			* $Mining_Foreman_Mindlink_bonus_1
-			* (1+0.01*$Industrial_Command_Ship_Skill) 
+			* (1+0.03*$Industrial_Command_Ship_Skill) 
 			* (1+0.10); # T1 Industrial Core;
 		$boost_factor = (1- $orca_boost);
 	}
@@ -164,7 +164,7 @@ sub get_boost_factor
 			* $Tech_2_Command_Burst_Modules_1
 			* (1+0.1 * $Mining_Director_Skill)
 			* $Mining_Foreman_Mindlink_bonus_1
-			* (1+0.01*$Industrial_Command_Ship_Skill) 
+			* (1+0.03*$Industrial_Command_Ship_Skill) 
 			* (1+0.15); # T2 Industrial Core;
 		$boost_factor = (1- $orca_boost);
 	}
