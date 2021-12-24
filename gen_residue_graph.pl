@@ -82,9 +82,9 @@ foreach my $elem ($crystal_type_A,  $strip_miner_I)
 }
 
 my $graph_data = [ \@time_line,
+                   $strip_miner_I->{mining_hold_over_time},
                    $crystal_type_A->{mining_hold_over_time}, 
-                   $crystal_type_B->{mining_hold_over_time},
-                   $strip_miner_I->{mining_hold_over_time}, ];
+                   $crystal_type_B->{mining_hold_over_time} ];
 
 $graph->set_legend(qw(Strip_Miner_I Crystal_Type_A_II Crystal_Type_B_II));
 my $gd = $graph->plot( $graph_data );
