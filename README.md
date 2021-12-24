@@ -23,16 +23,18 @@ This example Scenario consists of three Hulks with Rorqual Boost mining a Coloss
 |Crystal Type|Cluster Depleted|Ore Mined|
 |:-|:-|:-|
 |strip_miner_I|263 min| 3.598 m3|
-|Crystal_Type_A_II|131 min| 2.571 m3|
-|Crystal_Type_B_II|90 min| 2.217 m3|
+|Crystal_Type_A_II|133 min| 2.626 m3|
+|Crystal_Type_B_II|88 min| 2.174 m3|
 
 Choosing _Crystal Type A_ over Crystal Type B results in:
-1. Additional time needed to deplete the ore site: 40 min (31.18%)
-2. Additional ore gathered after completing the mining operation: 0.354M (13.77%)
+1. Additional time needed to deplete the ore site with Crystal_Type_A_II: 45 min (33.97%)
+2. Additional ore gathered after completing the mining operation with Crystal_Type_A_II: 0.453M m3 (17.24%)
+3. Ore that would have been gathered in the same time (45 min) with Crystal_Type_B_II in another cluster 1.120M m3(51.53%)
 
 Choosing _Strip_Miner_I_ over Crystal Type B results in:
-1. Additional time needed to deplete the ore site: 172 min (65.70%)
-2. Additional ore gathered after completing the mining operation: 1.381M (38.37%)
+1. Additional time needed to deplete the ore site with strip_miner_I: 174 min (66.46%)
+2. Additional ore gathered after completing the mining operation with strip_miner_I: 1.425M m3 (39.59%)
+3. Ore that would have been gathered in the same time (174 min) with Crystal_Type_B_II in another cluster 4.314M m3 (198.49%)
 
 The chart below shows the content of the mining hold filled by the three Hulks over time.
 

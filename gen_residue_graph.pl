@@ -69,10 +69,16 @@ printf("\n");
 
 foreach my $elem ($crystal_type_A,  $strip_miner_I)
 {
+	my ($x_time_s, $x_time_per) = extra_time($crystal_type_B, $elem);
+	my $x_time_min = $x_time_s / 60;
+	my ($x_ore_m3, $x_ore_per) = ore_preserved($crystal_type_B, $elem);
 	printf("Additional time needed to deplete the ore site with %s: %d min (%3.2f%%)\n", 
-	         $elem->{name}, extra_time($crystal_type_B, $elem));
+	         $elem->{name}, $x_time_min, $x_time_per);
 	printf("Additional ore gathered after completing the mining operation with %s: %3.3fM (%3.2f%%)\n", 
-	        $elem->{name}, ore_preserved($crystal_type_B, $elem));
+	        $elem->{name},$x_ore_m3, $x_ore_per );
+	my $type_B_gathered = ($x_time_s * $crystal_type_B->{miner_amount} /  $crystal_type_B->{cycle_time}*$number_of_mining_lasers);
+	printf("Ore that would have been gathered in the same time (%d min) with Crystal_Type_B_II in another cluster %3.3fM (%3.2f%%)\n", 
+	        $x_time_min, $type_B_gathered/1000000,  ($type_B_gathered /  $crystal_type_B->{mining_hold})*100);
 }
 
 my $graph_data = [ \@time_line,
@@ -80,7 +86,7 @@ my $graph_data = [ \@time_line,
                    $crystal_type_B->{mining_hold_over_time},
                    $strip_miner_I->{mining_hold_over_time}, ];
 
-$graph->set_legend(qw(Crystal_Type_A_II Crystal_Type_B_II Strip_Miner_I));
+$graph->set_legend(qw(Strip_Miner_I Crystal_Type_A_II Crystal_Type_B_II));
 my $gd = $graph->plot( $graph_data );
 
 if (defined $gd )
@@ -148,7 +154,7 @@ sub extra_time
 {
 	my $ref_obj  = $_[0];
 	my $comp_obj = $_[1];
-	my $extra_time = (($comp_obj->{last_time}) -  ($ref_obj->{last_time})) / 60;
+	my $extra_time = (($comp_obj->{last_time}) -  ($ref_obj->{last_time})) ;
 	my $x_time_per =  (1-(($ref_obj->{last_time}) / ($comp_obj->{last_time})))*100;
 	return $extra_time, $x_time_per;
 }
