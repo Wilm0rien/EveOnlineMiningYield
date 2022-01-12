@@ -757,7 +757,7 @@ sub get_ore_drone_amount
 	elsif ($ship_type eq "Orca")
 	{
 		$drone_yield_per_second =$drone_base
-			* (1 + 0.1 * $Industrial_Command_Ships_Skill)
+			* (1 + 0.15 * $Industrial_Command_Ships_Skill)
 			* (1 + 0.1 * $Drone_Interfacing_Skill)
 			* (1 + 0.05 * $Mining_Drone_Operation_Skill)
 			* (1 + 0.02 * $Mining_Drone_Specialization_Skill)
@@ -769,7 +769,7 @@ sub get_ore_drone_amount
 	elsif ($ship_type eq "Orca ICT1")
 	{
 		$drone_yield_per_second =$drone_base
-			* (1 + 0.1 * $Industrial_Command_Ships_Skill)
+			* (1 + 0.15 * $Industrial_Command_Ships_Skill)
 			* (1 + 0.1 * $Drone_Interfacing_Skill)
 			* (1 + 0.05 * $Mining_Drone_Operation_Skill)
 			* (1 + 0.02 * $Mining_Drone_Specialization_Skill)
@@ -782,7 +782,7 @@ sub get_ore_drone_amount
 	elsif ($ship_type eq "Orca ICT2")
 	{
 		$drone_yield_per_second =$drone_base
-			* (1 + 0.1 * $Industrial_Command_Ships_Skill)
+			* (1 + 0.15 * $Industrial_Command_Ships_Skill)
 			* (1 + 0.1 * $Drone_Interfacing_Skill)
 			* (1 + 0.05 * $Mining_Drone_Operation_Skill)
 			* (1 + 0.02 * $Mining_Drone_Specialization_Skill)
@@ -928,7 +928,7 @@ sub get_ice_drone_amount
 		$drone_cycle_duration =$drone_cycle_duration_base
 			* (1 - 0.05 * $Ice_Harvesting_Drone_Operation_Skill)
 			* (1 - 0.02 * $Ice_Harvesting_Drone_Specialication_Skill)
-			* (1 - 0.02 * $Industrial_Command_Ships_Skill)
+			* (1 - 0.05 * $Industrial_Command_Ships_Skill)
 			* (1 - 0.10) # Medium Drone Mining Augmentor I
 			* (1 - 0.15) # Medium Drone Mining Augmentor II
 			* (1 - 0.15) # Medium Drone Mining Augmentor II
