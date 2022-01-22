@@ -183,9 +183,9 @@ ORE DRONE in_game_value
 |    Mackinaw|   61.99|   90.01|  100.92|  104.15|        |
 |        Hulk|   61.99|   90.01|  100.92|  104.15|        |
 |    Porpoise|  153.43|  222.78|  249.79|  257.76|        |
-|        Orca|  102.29|  148.52|  166.52|  171.84|        |
-|   Orca ICT1|  127.86|  185.65|  208.15|  214.80|        |
-|   Orca ICT2|  179.00|  259.91|  291.42|  300.72|        |
+|        Orca|  119.33|  173.27|  194.28|  200.48|        |
+|   Orca ICT1|  149.17|  216.59|  242.85|  250.60|        |
+|   Orca ICT2|  208.84|  303.23|  339.99|  350.84|        |
 |     Rorqual|  102.29|  148.52|  166.52|  171.84|  360.05|
 |Rorqual ICT1|  276.18|  401.01|  449.61|  463.97|  972.14|
 |Rorqual ICT2|  409.15|  594.08|  666.09|  687.37| 1440.20|
@@ -223,9 +223,9 @@ ORE DRONE m3_per_second
 |    Mackinaw|    5.17|    7.50|    8.41|    8.68|        |
 |        Hulk|    5.17|    7.50|    8.41|    8.68|        |
 |    Porpoise|   12.79|   18.57|   20.82|   21.48|        |
-|        Orca|    8.52|   12.38|   13.88|   14.32|        |
-|   Orca ICT1|   10.65|   15.47|   17.35|   17.90|        |
-|   Orca ICT2|   14.92|   21.66|   24.28|   25.06|        |
+|        Orca|    9.94|   14.44|   16.19|   16.71|        |
+|   Orca ICT1|   12.43|   18.05|   20.24|   20.88|        |
+|   Orca ICT2|   17.40|   25.27|   28.33|   29.24|        |
 |     Rorqual|    8.52|   12.38|   13.88|   14.32|   30.00|
 |Rorqual ICT1|   23.01|   33.42|   37.47|   38.66|   81.01|
 |Rorqual ICT2|   34.10|   49.51|   55.51|   57.28|  120.02|
@@ -359,24 +359,25 @@ List of Drone Mining Augmentor Rigs (T1 and T2) used to max out drone yield.
 
 The following tables shows the cycle time for a drone depending on which ship is used with the rigs listed above. 
 
+ICE DRONE in_game_value
 |Ship|Ice Harvesting Drone I|Ice Harvesting Drone II|Augmented Ice Harvesting Drone|Excavator Ice Harvesting Drone|
 |:-|:-|:-|:-|:-|
 |     Venture|        |        |        |        |
 |   Endurance|        |        |        |        |
 |    Prospect|        |        |        |        |
-|    Procurer|  243.00|  202.50|  189.00|        |
-|   Retriever|  243.00|  202.50|  189.00|        |
-|     Covetor|  243.00|  202.50|  189.00|        |
-|       Skiff|  206.55|  172.12|  160.65|        |
-|    Mackinaw|  206.55|  172.12|  160.65|        |
-|        Hulk|  206.55|  172.12|  160.65|        |
-|    Porpoise|   79.01|   65.84|   61.45|        |
-|        Orca|  142.21|  118.51|  110.61|        |
-|   Orca ICT1|  106.66|   88.88|   82.96|        |
-|   Orca ICT2|   71.10|   59.25|   55.30|        |
-|     Rorqual|  110.61|   92.17|   86.03|   95.25|
-|Rorqual ICT1|   27.65|   23.04|   21.51|   23.81|
-|Rorqual ICT2|   16.59|   13.83|   12.90|   14.29|
+|    Procurer|  229.50|  172.12|  160.65|        |
+|   Retriever|  229.50|  172.12|  160.65|        |
+|     Covetor|  270.00|  202.50|  189.00|        |
+|       Skiff|  229.50|  172.12|  160.65|        |
+|    Mackinaw|  229.50|  172.12|  160.65|        |
+|        Hulk|  229.50|  172.12|  160.65|        |
+|    Porpoise|   87.78|   65.84|   61.45|        |
+|        Orca|  131.68|   98.76|   92.17|        |
+|   Orca ICT1|   98.76|   74.07|   69.13|        |
+|   Orca ICT2|   65.84|   49.38|   46.09|        |
+|     Rorqual|  122.90|   92.17|   86.03|   95.25|
+|Rorqual ICT1|   30.72|   23.04|   21.51|   23.81|
+|Rorqual ICT2|   18.43|   13.83|   12.90|   14.29|
 
 
 The following table shows the yield in m3/s per ship but *does not consider the yield loss caused by drone travel time*. 
@@ -387,19 +388,19 @@ ICE DRONE m3_per_second
 |     Venture|        |        |        |        |
 |   Endurance|        |        |        |        |
 |    Prospect|        |        |        |        |
-|    Procurer|    4.12|    4.94|    5.29|        |
-|   Retriever|    4.12|    4.94|    5.29|        |
-|     Covetor|    4.12|    4.94|    5.29|        |
-|       Skiff|    4.84|    5.81|    6.22|        |
-|    Mackinaw|    4.84|    5.81|    6.22|        |
-|        Hulk|    4.84|    5.81|    6.22|        |
-|    Porpoise|   12.66|   15.19|   16.27|        |
-|        Orca|    7.03|    8.44|    9.04|        |
-|   Orca ICT1|    9.38|   11.25|   12.05|        |
-|   Orca ICT2|   14.06|   16.88|   18.08|        |
-|     Rorqual|   18.08|   21.70|   23.25|   52.50|
-|Rorqual ICT1|   72.33|   86.79|   92.99|  209.98|
-|Rorqual ICT2|  120.55|  144.66|  154.99|  349.97|
+|    Procurer|    4.36|    5.81|    6.22|        |
+|   Retriever|    4.36|    5.81|    6.22|        |
+|     Covetor|    3.70|    4.94|    5.29|        |
+|       Skiff|    4.36|    5.81|    6.22|        |
+|    Mackinaw|    4.36|    5.81|    6.22|        |
+|        Hulk|    4.36|    5.81|    6.22|        |
+|    Porpoise|   11.39|   15.19|   16.27|        |
+|        Orca|    7.59|   10.13|   10.85|        |
+|   Orca ICT1|   10.13|   13.50|   14.47|        |
+|   Orca ICT2|   15.19|   20.25|   21.70|        |
+|     Rorqual|   16.27|   21.70|   23.25|   52.50|
+|Rorqual ICT1|   65.10|   86.79|   92.99|  209.98|
+|Rorqual ICT2|  108.49|  144.66|  154.99|  349.97|
 
 ## Code
 * The code to generate these tables is [here](EveOnlineMiningYield.pl)
