@@ -438,7 +438,7 @@ sub get_ore_mining_amount
 	my $out_string = "";
 	if ( $mining_yield_per_second == 0)
 	{
-		 $out_string =  sprintf("%8.8s", "N/A");
+		 $out_string =  sprintf("%8.8s", "");
 	}
 	else
 	{
@@ -601,7 +601,7 @@ sub get_ice_mining_amount
 	my $out_string = "";
 	if ( $Ice_Harvester_Cycle_Time == 0)
 	{
-		 $out_string =  sprintf("%8.8s", "N/A");
+		 $out_string =  sprintf("%8.8s", "");
 	}
 	else
 	{
@@ -833,7 +833,7 @@ sub get_ore_drone_amount
 	my $out_string = "";
 	if ( $drone_yield_per_second == 0)
 	{
-		 $out_string =  sprintf("%8.8s", "N/A");
+		 $out_string =  sprintf("%8.8s", "");
 	}
 	else
 	{
@@ -860,9 +860,17 @@ sub get_ice_drone_amount
 	my $drone_base = 0;
 	my $number_of_drones=5;
 	my $drone_cycle_duration_base = 0;
+	
+	# skills 
+	my $Ice_Harvesting_Drone_Operation_Skill = 5;
+	my $Ice_Harvesting_Drone_Specialication_Skill = 5;
+	my $Industrial_Command_Ships_Skill = 5;
+	my $Capital_Industrial_Ships_Skill = 5;
+
 	if ($drone_type eq "Ice Harvesting Drone I")
 	{
 		$drone_cycle_duration_base = 360;
+		$Ice_Harvesting_Drone_Specialication_Skill = 0;
 	}
 	elsif ($drone_type eq "Ice Harvesting Drone II")
 	{
@@ -883,20 +891,27 @@ sub get_ice_drone_amount
 		
 	}
 
-	# skills 
-	my $Ice_Harvesting_Drone_Operation_Skill = 5;
-	my $Ice_Harvesting_Drone_Specialication_Skill = 5;
-	my $Industrial_Command_Ships_Skill = 5;
-	my $Capital_Industrial_Ships_Skill = 5;
+
 
 	if  ( ($ship_type eq "Retriever") ||
-			($ship_type eq "Procurer") ||
-			($ship_type eq "Covetor")
+			($ship_type eq "Procurer") 
 		  )
 	{
 		$drone_cycle_duration =$drone_cycle_duration_base
 			* (1 - 0.05 * $Ice_Harvesting_Drone_Operation_Skill)
 			* (1 - 0.02 * $Ice_Harvesting_Drone_Specialication_Skill)
+			* (1 - 0.15) # Medium Drone Mining Augmentor II
+			             # remaining rigs occupied by medium ice harvester accelerator!
+			;
+		$number_of_drones = 1;
+	}
+	if  ( ($ship_type eq "Covetor")
+		  )
+	{
+		$drone_cycle_duration =$drone_cycle_duration_base
+			* (1 - 0.05 * $Ice_Harvesting_Drone_Operation_Skill)
+			* (1 - 0.02 * $Ice_Harvesting_Drone_Specialication_Skill)
+			# remaining rigs occupied by medium ice harvester accelerator and overclocking I
 			;
 		$number_of_drones = 1;
 	}
@@ -908,6 +923,7 @@ sub get_ice_drone_amount
 			* (1 - 0.05 * $Ice_Harvesting_Drone_Operation_Skill)
 			* (1 - 0.02 * $Ice_Harvesting_Drone_Specialication_Skill)
 			* (1 - 0.15) # Medium Drone Mining Augmentor II
+			# remaining rigs occupied by medium ice harvester accelerator!
 			;
 		$number_of_drones = 1;
 	}
@@ -940,7 +956,7 @@ sub get_ice_drone_amount
 		$drone_cycle_duration =$drone_cycle_duration_base
 			* (1 - 0.05 * $Ice_Harvesting_Drone_Operation_Skill)
 			* (1 - 0.02 * $Ice_Harvesting_Drone_Specialication_Skill)
-			* (1 - 0.02 * $Industrial_Command_Ships_Skill)
+			* (1 - 0.05 * $Industrial_Command_Ships_Skill)
 			* (1 - 0.25) # ICT1 Boost
 			* (1 - 0.10) # Medium Drone Mining Augmentor I
 			* (1 - 0.15) # Medium Drone Mining Augmentor II
@@ -953,7 +969,7 @@ sub get_ice_drone_amount
 		$drone_cycle_duration =$drone_cycle_duration_base
 			* (1 - 0.05 * $Ice_Harvesting_Drone_Operation_Skill)
 			* (1 - 0.02 * $Ice_Harvesting_Drone_Specialication_Skill)
-			* (1 - 0.02 * $Industrial_Command_Ships_Skill)
+			* (1 - 0.05 * $Industrial_Command_Ships_Skill)
 			* (1 - 0.50) # ICT2 Boost
 			* (1 - 0.10) # Medium Drone Mining Augmentor I
 			* (1 - 0.15) # Medium Drone Mining Augmentor II
@@ -1014,7 +1030,7 @@ sub get_ice_drone_amount
 	my $out_string = "";
 	if ( $drone_cycle_duration == 0)
 	{
-		 $out_string =  sprintf("%8.8s", "N/A");
+		 $out_string =  sprintf("%8.8s", "");
 	}
 	else
 	{
